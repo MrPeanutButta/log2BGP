@@ -27,16 +27,12 @@ On large-scale networks, this daemon may serve as a BGP routing information base
 
 ### Release Notes on bgpd v1.0.3(captain's log)
 New capabilities in this revision, and 1 bug fix.
+I've decided to use the daemons current binary database as a means of
+indexing BGP updates. These entries can be queried via a URL served by the ruby library Sinatra, or directly served via TCP socket API call.
 
-__NOTE:__ I've opted to use the daemons current binary database as a means of
-indexing BGP updates. These entries can be queried via a URL served by the ruby
-library Sinatra, or directly served via TCP socket API call.
+The BGP event database is organized by [peer id|prefix] key pair in the RIB, and that RIB entry holds all indexes for BGP event data. Each prefix may occupy up to 1000 entries. Once the max entry limit is reached (1000 entries), the oldest entries will begin to be overwritten. It's recommended that you export to some log collector if you wish to keep the data.
 
-BGP databases are organized by index. Each prefix may occupy up to 1000 entries. Once the max entry limit is reached (1000 entries), the oldest entries will begin to be overwritten. It's recommended that you export to some log collector if you wish to keep the data.
-
-### Revision 1.0.3 Notes
-
-### Additions
+#### Additions
 * Created version definitions in `version.h`.
 * Created TCP listener for Sinatra/socket API
 * Converts all API call returns to JSON formatted strings.
@@ -68,12 +64,12 @@ BGP databases are organized by index. Each prefix may occupy up to 1000 entries.
     
     str_return = read(tcp_stream);
 ```
-### Revisions
+#### Revisions
 * Peer state machine revised to only use 1 dedicated thread for reads, and the main BGP thread handles all queue processing. This has reduced the number of threads from 2 per peer to 1.
 * Collapsed TCP server loops for CLI and API into a single method.
 This will reduce code bloat.
 
-### Bug fixes
+#### Bug fixes
 * bgpd failed to create it's withdraw database if the file didn't already exist. Failure to open it's database resulted in BGP event data not being collected.
 
 ### TODO (in progress)
