@@ -38,6 +38,7 @@ or if needing prefix history
 
 With the above example we might expect a JSON return like so
 
+``` json
     {
         "entries": [
             {
@@ -117,6 +118,7 @@ With the above example we might expect a JSON return like so
             }
         ]
     }
+```
 
 ## Making API Calls with TCP Sockets
 Depending on your language of choice this can be done in a number of ways. Ideally you need to know how to open a TCP socket and read and write to it. The most important piece you need to know is the formatting of the `api-get`. Upon completion of an `api-get` the socket is closed by the daemon.
@@ -126,7 +128,8 @@ To demonstrate socket API calls I will use telnet. This doesn't mean that it's a
 ## Socket API Commands
 __Get current prefix data:__ `api-get prefix x.x.x.x`<br>
 __Get current and hitorical prefix data:__`api-get prefix x.x.x.x history`
-    
+
+``` bash
     $ telnet localhost 667
     Trying ::1...
     Trying 127.0.0.1...
@@ -134,7 +137,7 @@ __Get current and hitorical prefix data:__`api-get prefix x.x.x.x history`
     Escape character is '^]'.
      api-get prefix 8.8.8.8
     {"entries":[{"prefix":"8.0.0.0","prefix_bin":8,"netmask":"255.0.0.0","netmask_bin":255,"length":8,"prefix_range":"8.255.255.255","prefix_range_bin":4294967048,"peer":"10.12.0.238","peer_name":"route-views1.ord1","current":{"time_str":"2013-11-15 22:54:46","time_epoch":1384556086,"as_path_length":2,"as_path":["19994(ORD)","3356(Level3)"],"origin":"i","next_hop_str":"(Level3.edge1.ord1)","next_hop_bin":905463556,"med":0,"local_pref":0,"atomic_aggregate":true,"aggregator_str":"4.69.130.24","aggregator_bin":411190532,"aggregator_as_str":"3356(Level3)","aggregator_as_bin":3356,"community_length":7,"community":["3356(Level3):0","3356(Level3):3","3356(Level3):100","3356(Level3):123","3356(Level3):575","3356(Level3):2042","3356(Level3):11211"]}},{"prefix":"8.8.8.0","prefix_bin":526344,"netmask":"255.255.255.0","netmask_bin":16777215,"length":24,"prefix_range":"8.8.8.255","prefix_range_bin":4278716424,"peer":"10.12.0.238","peer_name":"route-views1.ord1","current":{"time_str":"2013-11-15 22:54:45","time_epoch":1384556085,"as_path_length":3,"as_path":["19994(ORD)","3356(Level3)","15169(Google)"],"origin":"i","next_hop_str":"(Level3.edge1.ord1)","next_hop_bin":905463556,"med":0,"local_pref":0,"community_length":7,"community":["3356(Level3):3","3356(Level3):22","3356(Level3):86","3356(Level3):575","3356(Level3):666","3356(Level3):2042","3356(Level3):11211"]}}]}Connection closed by foreign host.
-
+```
 ### Socket API example in ruby
 ``` ruby
     ## BGP Looking Glass Socket API example
