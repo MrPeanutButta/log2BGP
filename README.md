@@ -1,4 +1,4 @@
-## Border Gateway Protocol: A transparent looking-glass
+### Border Gateway Protocol: A transparent looking-glass
 This BGP looking-glass allows the collection of the IPv4 Internet 
 routing table which may be viewed by service providers and/or ISP customers to validate 
 IP routing across autonomous systems.
@@ -25,7 +25,7 @@ On large-scale networks, this daemon may serve as a BGP routing information base
 * **[Command-line Refence](http://aaronhebert.net/bgplg/cli-reference.html)**
 * **[REST API Reference](http://aaronhebert.net/bgplg/api-reference.html)**
 
-## Release Notes on bgpd v1.0.3(captain's log)
+### Release Notes on bgpd v1.0.3(captain's log)
 New capabilities in this revision, and 1 bug fix.
 
 __NOTE:__ I've opted to use the daemons current binary database as a means of
