@@ -1,0 +1,13 @@
+This is to document the various preprocessor directives to assist with builds
+and debugging.
+
+The follow can be specified by using the -D compiler flag.
+
+USE_CLI                     Includes various functions needed for CLI.
+
+TCP_CLIENT_CLI:             Create simple dtor to allow instance creation.
+                            Needed for cli.
+                            ~tcp_client();
+
+LOOKING_GLASS_ONLY_CLI      Only include commands strictly used as looking
+                            glass.
