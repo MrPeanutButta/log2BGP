@@ -6,14 +6,14 @@ comments: true
 sharing: true
 footer: true
 ---
-## flowlab-cli
+### Command-line Interface
 The command line interface to bgpd loosely follows a familier Cisco IOS style syntax. There are also various modes of operation that will allow user or admin level commands to be entered.
 
-## User Exec
+### User Exec
 The user exec prompt is initially set to 0x01 which allows common commands to be accessed. Below is an example of just a few commands that would be visible to the non admin user. 
 
         ahebert-M15x>
-          ?                                     synonym for quick/command `help'
+          ?                             synonym for quick/command `help'
           cd                            change directory
           enable                        enter privileged exec mode
           exit                          exit current configuration level
@@ -30,7 +30,7 @@ The quick help '?' will display a list of available commands. If the text alread
         ahebert-M15x>enable 
           <cr>
 
-## Privileged Exec
+### Privileged Exec
 The user may enter admin mode by entering the 'enable' command. The user is then prompted to enter the local system password for that account. This is the equivalent of entering 'sudo' from the bash shell.
 
         ahebert-M15x>enable 
@@ -56,13 +56,13 @@ After entering admin mode, more commands become available to perform system task
           stat                          srint out statistics on a file
           write                         write running-config
 
-## Configuration Mode
+### Configuration Mode
 System configuration is performed from the configuration prompt. From this mode interfaces, protocols, and local system settings can be configured.
 
         ahebert-M15x#configure terminal 
           <cr>
 
-## Command line editing
+### Command line editing
 Various hotkeys allow command line editing. 
 A list of a few helpful hotkeys.
 

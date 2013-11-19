@@ -6,14 +6,14 @@ comments: true
 sharing: true
 footer: true
 ---
-## A note about example configurations
+### A note about example configurations
 The below configurations are just examples and do not reflect a full configuration. Hopefully these examples will convey the basic idea, but they are not meant for a working configuration.
 
-## Loading initial configuration
+### Loading initial configuration
 An initial configuration can be loaded with the `-load` switch.<br>
 `flowlab-cli -load config-file-name`
 
-## Configuring peering sessions
+### Configuring peering sessions
 The CLI syntax for peering closely resembles the Cisco IOS syntax. Below is an example. Note, that the BGP ID must be statically set before the session will establish.
 
         ! comments are beginning with "bang" !
@@ -29,7 +29,7 @@ The CLI syntax for peering closely resembles the Cisco IOS syntax. Below is an e
         ! declare a peer in remote AS 65000
         neighbor 10.1.2.15 remote-as 65000
 
-## Setting TCP and BGP buffers
+### Setting TCP and BGP buffers
 Increasing the buffer sizes may yield better performance if the BGP peer is expected to send lots of updates. However, increasing these buffers will add to the memory overhead and if the session is already established, may take some time depending on the amount of space requested for allocation.
 
         ! assuming 10.1.2.15 is already a peer
@@ -38,14 +38,14 @@ Increasing the buffer sizes may yield better performance if the BGP peer is expe
         ! smallest send buffers to conserve resources. flowlab does not send UPDATE messages (yet)
         neighbor 10.1.2.15 tx-buffer 512 512
 
-## Aliasing BGP attributes
+### Aliasing BGP attributes
 To make the BGP update log a bit more readable, through the CLI one can configure attributes with a alias.
 Assuming our peering session is already configured:
-### Alias BGP ID of the peer
+#### Alias BGP ID of the peer
 
         neighbor 10.1.2.15 attribute bgp-id alias route-reflector(lab)
 
-### Alias AS_PATH attribute
+#### Alias AS_PATH attribute
 If the AS value appears in the AS_PATH, a string label will be appended.
 
         neighbor 10.1.2.15 attribute as-path alias 65001 (lab1)
@@ -63,7 +63,7 @@ If the AS value appears in the AS_PATH, a string label will be appended.
         neighbor 10.1.2.15 attribute as-path alias 1299 (Telia)
         neighbor 10.1.2.15 attribute as-path alias 174 (Cogent)
 
-### Alias NEXT_HOP attribute
+#### Alias NEXT_HOP attribute
 When logging updates, it may be helpful to see actual device names instead of IP address.
 
         neighbor 10.1.2.15 attribute next-hop alias ipv4 4.7.24.5 (Level3.edge1)
@@ -75,14 +75,14 @@ When logging updates, it may be helpful to see actual device names instead of IP
         neighbor 10.1.2.15 attribute next-hop alias ipv4 38.22.10.5 (Cogent.edge4)
         neighbor 10.1.2.15 attribute next-hop alias ipv4 66.8.8.1 (Cogent_nullroute.edge4)
 
-### Alias COMMUNITY attribute
+#### Alias COMMUNITY attribute
 If wanting to track prefixes that may have been set with a community string, aliasing community values is supported. Note that if the AS_PATH attribute is already configured, then only the VALUE needs to be set.
 Below is an example of how to track prefixes that are being manipulated with a BGP "flow-control" device.
 Any prefix that gets manipulated gets a community of $AS:8000. We match the value 8000.
 
         neighbor 10.1.2.15 attribute community alias 8000 (FCP)
 
-## Viewing peer information
+### Viewing peer information
 BGP peer information can be viewed with `show bgp neighbors `
 
         RAX-looking-glass>show bgp neighbors 
@@ -139,7 +139,7 @@ BGP peer information can be viewed with `show bgp neighbors `
                                 System          Config
                                    29200           14600
 
-## Prefix lookup (history)
+### Prefix lookup (history)
 `show bgp ipv4 <x.x.x.x>` - Will return all matches.<br>
 `show bgp ipv4 <x.x.x.x> history` - Will return all matches with historical data.
 
@@ -194,7 +194,7 @@ BGP peer information can be viewed with `show bgp neighbors `
                 Next hop: (Level3.edge1.ord1) Metric: 0 Local Pref: 0  Atomic Aggregate: true
                 Aggregator Origin: 203.113.12.253 Aggregator AS: 9737
 
-## Viewing the full adjacency RIB table
+### Viewing the full adjacency RIB table
 The full adj-rib-in may be viewed with `show bgp adj-rib-in`
 
         RAX-looking-glass#show bgp adj-rib-in 
