@@ -47,23 +47,39 @@ The BGP event database is organized by [peer id|prefix] key pair in the RIB, and
     	+ write command length followed by api-get
     	+ can be tested with `telnet localhost 667`
 
+#### Socket API with Ruby example
+``` ruby
+    ## BGP Looking Glass Socket API example
+    
+    require 'socket'      # Sockets are in standard library
+    
+    def api_write(cmd)
+    
+      host = '127.0.0.1'
+      port = 667
+    
+      s = TCPSocket.open(host, port)
+      
+      # Here we need to prepend the string length of the command.
+      # The API will expect the length first.
+      s.write(cmd.length.chr+cmd.to_s)
+      
+      # ret_val is JSON formatted after this read
+      ret_val = s.read   # Read lines from the socket
+      s.close            # Close the socket when done
+      
+      return ret_val.to_s
+    end
+    
+    # Current prefix data
+    puts("current data for 8.8.8.8 is:")
+    puts(api_write("api-get prefix 8.8.8.8"))
+    
+    # Current prefix data, and historical
+    puts("current & historical data for 8.8.8.8 is:")
+    puts(api_write("api-get prefix 8.8.8.8 history"))
 ```
-    // Raw API sockets
-    // pseudo code
-    
-    server = 10.1.1.1;
-    port = 667;
-    
-    api_cmd = "api-get prefix 8.8.8.8";
-    length = string_length(api_cmd);
-    
-    tcp_stream = open_socket(server, port);
-    
-    write(tcp_stream, length);
-    write(tcp_stream, api_cmd);
-    
-    str_return = read(tcp_stream);
-```
+
 #### Revisions
 * Peer state machine revised to only use 1 dedicated thread for reads, and the main BGP thread handles all queue processing. This has reduced the number of threads from 2 per peer to 1.
 * Collapsed TCP server loops for CLI and API into a single method.
