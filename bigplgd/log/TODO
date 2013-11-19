@@ -1,0 +1,6 @@
+__`<aaron.hebert@rackspace.com>`__<br>
+* Add more functionality to the API from this point forward.
+* Doxygen code comment clean up.
+* Hosting Doxygen on projects webpage.
+* Make max database entries configurable instead of hard-coded limit 1000.
+* persistent database entries: write indexes to binary file with associated prefix and peer as the key. This will be loaded at startup.

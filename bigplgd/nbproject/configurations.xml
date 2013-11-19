@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="90">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="HeaderFiles"
+                   displayName="Header Files"
+                   projectFiles="true">
+      <logicalFolder name="cli" displayName="cli" projectFiles="true">
+        <itemPath>include/cli/bgp_cmdparser.h</itemPath>
+        <itemPath>include/cli/bgp_command_struct.h</itemPath>
+      </logicalFolder>
+      <itemPath>include/bgp.h</itemPath>
+      <itemPath>include/bgp_adj_rib.h</itemPath>
+      <itemPath>include/bgp_adj_rib_wdrawn.h</itemPath>
+      <itemPath>include/bgp_database.h</itemPath>
+      <itemPath>include/bgp_msg.h</itemPath>
+      <itemPath>include/bgp_msg_text.h</itemPath>
+      <itemPath>include/bgp_peer.h</itemPath>
+      <itemPath>include/bgp_syslog.h</itemPath>
+      <itemPath>include/bgp_thread-mgr.h</itemPath>
+      <itemPath>include/bgp_timer.h</itemPath>
+      <itemPath>include/misc.h</itemPath>
+      <itemPath>include/tcp_client.h</itemPath>
+      <itemPath>include/tcp_server.h</itemPath>
+      <itemPath>include/test_packets.h</itemPath>
+      <itemPath>include/udp_sender.h</itemPath>
+      <itemPath>include/version.h</itemPath>
+    </logicalFolder>
+    <logicalFolder name="ResourceFiles"
+                   displayName="Resource Files"
+                   projectFiles="true">
+      <itemPath>50-default.conf</itemPath>
+      <itemPath>bgpd.conf</itemPath>
+    </logicalFolder>
+    <logicalFolder name="SourceFiles"
+                   displayName="Source Files"
+                   projectFiles="true">
+      <logicalFolder name="api" displayName="api" projectFiles="true">
+        <itemPath>api/bgp_api.cpp</itemPath>
+        <itemPath>api/bgp_api.rb</itemPath>
+      </logicalFolder>
+      <logicalFolder name="cli" displayName="cli" projectFiles="true">
+        <itemPath>cli/bgp_cli.cpp</itemPath>
+        <itemPath>cli/bgp_cmdparser.cpp</itemPath>
+      </logicalFolder>
+      <itemPath>bgp.cpp</itemPath>
+      <itemPath>bgp_adj_rib_wdrawn.cpp</itemPath>
+      <itemPath>bgp_attrib_alias.cpp</itemPath>
+      <itemPath>bgp_database.cpp</itemPath>
+      <itemPath>bgp_main.cpp</itemPath>
+      <itemPath>bgp_notification.cpp</itemPath>
+      <itemPath>bgp_open.cpp</itemPath>
+      <itemPath>bgp_peer.cpp</itemPath>
+      <itemPath>bgp_send.cpp</itemPath>
+      <itemPath>bgp_syslog.cpp</itemPath>
+      <itemPath>bgp_thread-mgr.cpp</itemPath>
+      <itemPath>bgp_timer.cpp</itemPath>
+      <itemPath>bgp_update.cpp</itemPath>
+      <itemPath>misc.cpp</itemPath>
+      <itemPath>tcp_client.cpp</itemPath>
+      <itemPath>tcp_server.cpp</itemPath>
+    </logicalFolder>
+    <logicalFolder name="TestFiles"
+                   displayName="Test Files"
+                   projectFiles="false"
+                   kind="TEST_LOGICAL_FOLDER">
+      <logicalFolder name="f1"
+                     displayName="BGP API Test"
+                     projectFiles="true"
+                     kind="TEST">
+        <itemPath>tests/bgp_api_runner.cpp</itemPath>
+        <itemPath>tests/bgp_api_test.h</itemPath>
+        <itemPath>tests/bgp_apil_test.cpp</itemPath>
+      </logicalFolder>
+    </logicalFolder>
+    <logicalFolder name="ExternalFiles"
+                   displayName="Important Files"
+                   projectFiles="false"
+                   kind="IMPORTANT_FILES_FOLDER">
+      <itemPath>../LICENSE</itemPath>
+      <itemPath>Makefile</itemPath>
+      <itemPath>C:/Users/aaron/Documents/NetBeansProjects/flowlab_bgp_lg/README.md</itemPath>
+    </logicalFolder>
+  </logicalFolder>
+  <sourceRootList>
+    <Elem>cli</Elem>
+    <Elem>api</Elem>
+    <Elem>include/cli</Elem>
+  </sourceRootList>
+  <projectmakefile>Makefile</projectmakefile>
+  <confs>
+    <conf name="Release" type="1">
+      <toolsSet>
+        <compilerSet>GNU|GNU</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>6</developmentMode>
+          <architecture>2</architecture>
+          <standard>3</standard>
+          <warningLevel>3</warningLevel>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+          <standard>8</standard>
+          <incDir>
+            <pElem>include/cli</pElem>
+            <pElem>include</pElem>
+          </incDir>
+          <preprocessorList>
+            <Elem>TCP_CLIENT_BGPD</Elem>
+            <Elem>USE_BGPD</Elem>
+          </preprocessorList>
+          <warningLevel>3</warningLevel>
+        </ccTool>
+        <asmTool>
+          <developmentMode>6</developmentMode>
+          <architecture>2</architecture>
+          <warningLevel>3</warningLevel>
+        </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bigplgd</output>
+          <linkerLibItems>
+            <linkerOptionItem>-lpthread</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+        <requiredProjects>
+          <makeArtifact PL="../cli"
+                        CT="1"
+                        CN="Debug"
+                        AC="true"
+                        BL="true"
+                        WD="../cli"
+                        BC="${MAKE}  -f Makefile CONF=Debug"
+                        CC="${MAKE}  -f Makefile CONF=Debug clean"
+                        OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cli">
+          </makeArtifact>
+        </requiredProjects>
+      </compileType>
+      <packaging>
+        <packType>Debian</packType>
+        <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/bigplg-1.0.3-${CND_PLATFORM}_64.deb</output>
+        <packTopDir>/usr/sbin</packTopDir>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="/usr/sbin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bigplg-cli"
+                            from="../cli/dist/Debug/GNU-Linux-x86/flowlab-cli"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bigplg-api"
+                            from="api/bgp_api.rb"
+                            perm="644"
+                            owner="root"
+                            group="bin"/>
+          <packFileListElem type="File"
+                            to="/etc/${OUTPUT_BASENAME}/bigplgd.conf"
+                            from="etc/bgpd.conf"
+                            perm="644"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+        <packInfoList>
+          <packInfoListElem name="Package" value="bigplg" mandatory="true"/>
+          <packInfoListElem name="Version" value="1.0.3" mandatory="true"/>
+          <packInfoListElem name="Architecture" value="amd64" mandatory="false"/>
+          <packInfoListElem name="Maintainer"
+                            value="aaron.hebert@gmail.com"
+                            mandatory="false"/>
+          <packInfoListElem name="Description"
+                            value="...Border Gateway Protocol: A transparent looking-glass (BigPlg)"
+                            mandatory="false"/>
+        </packInfoList>
+        <packAddInfosListElem>
+          <Elem>http://aaronhebert.net/bgplg</Elem>
+        </packAddInfosListElem>
+      </packaging>
+      <item path="50-default.conf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="api/bgp_api.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="api/bgp_api.rb" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="bgp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_adj_rib_wdrawn.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_attrib_alias.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_database.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_notification.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_open.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_peer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_send.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_syslog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_thread-mgr.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_timer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_update.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgpd.conf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cli/bgp_cli.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cli/bgp_cmdparser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+          <preprocessorList>
+            <Elem>BGP_GDB_DEBUG_TEST_PACKET</Elem>
+            <Elem>BGP_MYSQL_UNIT_TEST</Elem>
+            <Elem>BGP_UNIT_TEST</Elem>
+            <Elem>TCP_CLIENT_BGPD</Elem>
+            <Elem>USE_BGPD</Elem>
+            <Elem>USE_MYSQL</Elem>
+          </preprocessorList>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+          <commandlineTool>g++</commandlineTool>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <item path="include/bgp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_adj_rib.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_adj_rib_wdrawn.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_database.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_msg.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_msg_text.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_peer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_syslog.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_thread-mgr.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_timer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/cli/bgp_cmdparser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/cli/bgp_command_struct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/misc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/tcp_client.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/tcp_server.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/test_packets.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/udp_sender.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/version.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="misc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tcp_client.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tcp_server.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/bgp_api_runner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/bgp_api_test.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/bgp_apil_test.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Debug" type="1">
+      <toolsSet>
+        <compilerSet>GNU|GNU</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <ccTool>
+          <standard>8</standard>
+          <commandlineTool>g++</commandlineTool>
+          <incDir>
+            <pElem>include/cli</pElem>
+            <pElem>include</pElem>
+          </incDir>
+          <commandLine>-g3</commandLine>
+          <preprocessorList>
+            <Elem>BGP_GDB_DEBUG_NO_DAEMON</Elem>
+            <Elem>BGP_GDB_DEBUG_RIB_PROFILE</Elem>
+            <Elem>TCP_CLIENT_BGPD</Elem>
+            <Elem>USE_BGPD</Elem>
+          </preprocessorList>
+          <warningLevel>3</warningLevel>
+        </ccTool>
+        <asmTool>
+          <architecture>2</architecture>
+          <warningLevel>2</warningLevel>
+        </asmTool>
+        <linkerTool>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bigplgd</output>
+          <commandlineTool>g++</commandlineTool>
+          <linkerLibItems>
+            <linkerOptionItem>-lpthread</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+        <requiredProjects>
+          <makeArtifact PL="../cli"
+                        CT="1"
+                        CN="Debug"
+                        AC="true"
+                        BL="true"
+                        WD="../cli"
+                        BC="${MAKE}  -f Makefile CONF=Debug"
+                        CC="${MAKE}  -f Makefile CONF=Debug clean"
+                        OP="${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/flowlab-cli">
+          </makeArtifact>
+        </requiredProjects>
+      </compileType>
+      <packaging>
+        <packType>Debian</packType>
+        <packFileList>
+          <packFileListElem type="File"
+                            to="${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}"
+                            from="${OUTPUT_PATH}"
+                            perm="755"
+                            owner="root"
+                            group="bin"/>
+        </packFileList>
+        <packInfoList>
+          <packInfoListElem name="Package" value="bigplgd" mandatory="true"/>
+          <packInfoListElem name="Version" value="1.0" mandatory="true"/>
+          <packInfoListElem name="Architecture" value="i386" mandatory="false"/>
+          <packInfoListElem name="Maintainer" value="aaron" mandatory="false"/>
+          <packInfoListElem name="Description" value="..." mandatory="false"/>
+        </packInfoList>
+      </packaging>
+      <item path="50-default.conf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="api/bgp_api.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="api/bgp_api.rb" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="bgp.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_adj_rib_wdrawn.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_attrib_alias.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_database.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_main.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_notification.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_open.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_peer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_send.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_syslog.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_thread-mgr.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_timer.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgp_update.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="bgpd.conf" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="cli/bgp_cli.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="cli/bgp_cmdparser.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </cTool>
+        <ccTool>
+          <commandLine>`cppunit-config --cflags`</commandLine>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+          <linkerLibItems>
+            <linkerOptionItem>`cppunit-config --libs`</linkerOptionItem>
+          </linkerLibItems>
+        </linkerTool>
+      </folder>
+      <item path="include/bgp.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_adj_rib.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_adj_rib_wdrawn.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_database.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_msg.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_msg_text.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_peer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_syslog.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_thread-mgr.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/bgp_timer.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/cli/bgp_cmdparser.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/cli/bgp_command_struct.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/misc.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/tcp_client.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/tcp_server.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/test_packets.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/udp_sender.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="include/version.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="misc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tcp_client.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tcp_server.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/bgp_api_runner.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tests/bgp_api_test.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="tests/bgp_apil_test.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+    </conf>
+  </confs>
+</configurationDescriptor>

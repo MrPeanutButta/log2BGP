@@ -1,0 +1,22 @@
+This is to document the various preprocessor directives to assist with builds
+and debugging.
+
+The follow can be specified by using the -D compiler flag.
+
+BGP_GDB_DEBUG_NO_DAEMON         : If defined, runs bgpd in the foreground.
+                                    Useful if step debugging.
+
+BGP_GDB_DEBUG_TEST_PACKET       : Include specially crafted packets for testing.
+
+BGP_GDB_DEBUG_RIB_PROFILE       : Profile RIB updates in seconds
+
+TCP_CLIENT_BGPD                 : Creates pure virtual dtor for tcp_client. Needed
+                                    for bgpd since BGP inherits tcp_client.
+                                    virtual ~tcp_client() = 0;
+
+WITHDRAW_LOGGING                : Turns on explicit withdraw logging.
+
+BGP_UNIT_TEST                   : Generic unit testing.
+
+USE_ESTABLISHED_TO_PUSH_QUEUE   : Defined to use BGP::peer_established(BGP *bgp, bgp_peer *peer)
+                                    to push test packets to peer queue.
