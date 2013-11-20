@@ -2,8 +2,6 @@ language: cpp
 compiler:
   - g++
   - clang++
-before_script:
-  - sudo apt-get install libreadline-dev
 script: make
 branches:
   only:
