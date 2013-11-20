@@ -2,8 +2,10 @@ language: cpp
 compiler:
   - g++
 before_script:
-  - sudo apt-get install libreadline-dev
-  - cd bigplgd
+    - sudo apt-get update -qq
+    - sudo apt-get install -qq g++
+    - sudo apt-get install libreadline-dev
+    - cd bigplgd
 script: make
 branches:
   only:
