@@ -70,20 +70,22 @@ public:
     // API specific
 
     /* returns all current info on prefix
-     * /bgp/ipv4/:prefix */
+     * /bgp/ipv4/:prefix
+     * /bgp/ipv4/:;prefix/history
+     *
+     * api-get prefix x.x.x.x
+     * api-get prefix x.x.x.x history
+     */
     static std::string api_get_prefix(BGP *, std::vector<std::string> &);
 
-    /* return all current and historical info on prefix
-     * /bgp/ipv4/:prefix/history */
-    static std::string api_get_prefix_history(BGP *, std::vector<std::string> &);
-
     /* returns all current prefixes from origin ASN
-     * /bgp/ipv4/:prefix/origin_as */
+     * /bgp/ipv4/from-asn/:ASN
+     * /bgp/ipv4/from-asn/:ASN/history
+     *
+     * api-get all-from-asn ##
+     * api-get all-from-asn ## history
+     */
     static std::string api_get_prefix_origin_as(BGP *, std::vector<std::string> &);
-
-    /* returns all prefixes from originating ASN
-     * /bgp/ipv4/:asn */
-    static std::string api_get_all_originas(BGP *, std::vector<std::string> &);
 
     /* returns all prefixes with noexport and noadvertise community
      * values set

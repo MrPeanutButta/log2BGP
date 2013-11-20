@@ -557,8 +557,6 @@ int BGP::peer_entry(const bgp_update &update) {
     // check for implicit withdraw
     it = adj_rib_in.find(std::make_pair(update.nlri.prefix, update.nlri.bgp_id));
 
-
-
     bgp_peer *peer = this->get_peer_by_uint32_t_bgp_id(update.nlri.bgp_id);
 
     if (peer == nullptr) {
