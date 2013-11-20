@@ -46,6 +46,7 @@ std::string BGP::translate_bgp_id(const uint32_t bgp_id) {
 
     return __s;
 }
+
 /** deprecated.
  */
 std::string BGP::translate_origin(const uint32_t bgp_id, const uint8_t origin) {
@@ -125,6 +126,7 @@ std::string BGP::translate_ipv4_next_hop(const uint32_t bgp_id,
 
     return __s;
 }
+
 /** Alias MULTI_EXIT_DISC.
  *
  * returns string representation of MULTI_EXIT_DISC.

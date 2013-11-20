@@ -22,7 +22,7 @@
       <itemPath>cli_main.cpp</itemPath>
       <itemPath>cmdparser.cpp</itemPath>
       <itemPath>misc.cpp</itemPath>
-      <itemPath>../bgpd/tcp_client.cpp</itemPath>
+      <itemPath>tcp_client.cpp</itemPath>
       <itemPath>util.cpp</itemPath>
       <itemPath>util_bgp.cpp</itemPath>
     </logicalFolder>
@@ -91,8 +91,6 @@
       </compileType>
       <item path="../bgpd/include/tcp_client.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../bgpd/tcp_client.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="cli.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cli_main.cpp" ex="false" tool="1" flavor2="0">
@@ -110,6 +108,8 @@
       <item path="include/util.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="misc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tcp_client.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="util.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -138,8 +138,6 @@
       </compileType>
       <item path="../bgpd/include/tcp_client.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../bgpd/tcp_client.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="cli.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cli_main.cpp" ex="false" tool="1" flavor2="0">
@@ -157,6 +155,8 @@
       <item path="include/util.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="misc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tcp_client.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="util.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -195,8 +195,6 @@
       </compileType>
       <item path="../bgpd/include/tcp_client.h" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="../bgpd/tcp_client.cpp" ex="false" tool="1" flavor2="0">
-      </item>
       <item path="cli.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="cli_main.cpp" ex="false" tool="1" flavor2="0">
@@ -214,6 +212,8 @@
       <item path="include/util.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="misc.cpp" ex="false" tool="1" flavor2="0">
+      </item>
+      <item path="tcp_client.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="util.cpp" ex="false" tool="1" flavor2="0">
       </item>

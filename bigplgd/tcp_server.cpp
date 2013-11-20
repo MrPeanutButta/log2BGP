@@ -154,6 +154,7 @@ void tcp_server::listen_loop(const int &socket,
     close(socket);
     memset(&client_addrinfo, 0, sizeof (addrinfo));
 }
+
 /** Handle client connection.
  *
  * reads 'len' and 'command' string.
@@ -275,6 +276,7 @@ bool is_api_call(const std::string &buffer) {
      * we want to return !0, which == true. */
     return !(tokens[0].compare("api-get"));
 }
+
 /** Handle connections from sinatra API.
  *
  * reads 'len' and 'command' string.

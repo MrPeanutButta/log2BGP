@@ -138,6 +138,7 @@ std::string BGP::display_entry(BGP *bgp, bgp_update *entry) {
 
     return s_s.str();
 }
+
 /** Search for IPv4 prefix.
  *
  * searches for matching subnet to IPv4 address.
@@ -253,6 +254,7 @@ std::string BGP::proto_bgp_toggle_update_dump(BGP *bgp, std::vector<std::string>
 
     return s_s.str();
 }
+
 /** Initialize peer defaults & finite state machine.
  *
  * initializes peer struct and calls InitPeer to enter
@@ -316,6 +318,7 @@ std::string BGP::proto_bgp_neighbor(BGP *bgp, std::vector<std::string> &tokens) 
 
     return s_s.str();
 }
+
 /** General show commands.
  *
  * executes various show commands
@@ -323,6 +326,7 @@ std::string BGP::proto_bgp_neighbor(BGP *bgp, std::vector<std::string> &tokens) 
 std::string BGP::Show(BGP *bgp, std::vector<std::string> &tokens) {
     return "";
 }
+
 /** Redirects peer data to stringstream.
  *
  * flips through the thread_q and prints peer stats
@@ -429,6 +433,7 @@ std::string BGP::show_bgp_neighbors(BGP *bgp, std::vector<std::string> &tokens) 
 
     return s_s.str();
 }
+
 /** Write config to /etc/flowlab/bgpd/bgpd.conf.
  *
  * collects BGP specific data and writes to config
@@ -561,6 +566,7 @@ std::string next_hopv4_print(const bgp_update &update) {
     ss << std::setw(32) << std::setiosflags(std::ios::left) << buffer;
     return ss.str();
 }
+
 /** BGP::show_bgp_adj_rib_in - Writes adj-rib-in entries to pty
  */
 std::string BGP::show_bgp_adj_rib_in(BGP *bgp, std::vector<std::string> &tokens) {
@@ -678,6 +684,7 @@ std::string BGP::show_bgp_adj_rib_in(BGP *bgp, std::vector<std::string> &tokens)
     tokens.clear();
     return s_s.str();
 }
+
 /** BGP::show_bgp_adj_rib_wdrawn - Writes withdrawn-rib entries to pty
  */
 std::string BGP::show_bgp_adj_rib_wdrawn(BGP *bgp, std::vector<std::string> &tokens) {

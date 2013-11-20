@@ -36,7 +36,6 @@
 
 #include "mongo/bson/bson.h"
 
-// namespace command_parser;
 /** Performs all management of peer fsm thread and cli commands.
  *
  * Main thread processes rib-in-queue.
@@ -80,7 +79,7 @@ public:
 
     /* returns all current prefixes from origin ASN
      * /bgp/ipv4/:prefix/origin_as */
-    static std::string api_get_prefix_originas(BGP *, std::vector<std::string> &);
+    static std::string api_get_prefix_origin_as(BGP *, std::vector<std::string> &);
 
     /* returns all prefixes from originating ASN
      * /bgp/ipv4/:asn */
@@ -287,7 +286,7 @@ public:
         return this->dumper_on_off;
     }
 
-/** Syslog reference
+    /** Syslog reference
      *  syslog() - macros with list of severity Levels:
      *0 -       Emergency: system is unusable
      *1 -       Alert: action must be taken immediately
@@ -318,7 +317,7 @@ public:
     static std::string display_entry(BGP *, bgp_update *);
 
     // formats a RIB entry to JSON
-    static std::string jsonify_entry(BGP *, bgp_update *);
+    std::string jsonify_entry(bgp_update *);
 
     void add_logging_host(const uint32_t& ipv4,
             const std::string& dest_host_ipv4, const uint16_t& port) {

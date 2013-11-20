@@ -93,7 +93,7 @@ std::string BGP::api_get_prefix(BGP *bgp, std::vector<std::string> &tokens) {
             s_s << ",";
         }
 
-        s_s << "\"current\":{" << jsonify_entry(bgp, &entry) << "}";
+        s_s << "\"current\":{" << bgp->jsonify_entry(&entry) << "}";
 
         if (dump_history) {
             ret_rec = bgp->db_get_entries(bgp, entry);
@@ -102,7 +102,7 @@ std::string BGP::api_get_prefix(BGP *bgp, std::vector<std::string> &tokens) {
             bgp_update *update = nullptr;
             for (auto rec = ret_rec.begin(); rec != ret_rec.end(); ++rec) {
                 update = &*rec;
-                s_s << "{" << jsonify_entry(bgp, update);
+                s_s << "{" << bgp->jsonify_entry(update);
 
                 // determine if last entry
                 if ((rec + 1) != ret_rec.end()) {
@@ -132,7 +132,7 @@ std::string BGP::api_get_prefix(BGP *bgp, std::vector<std::string> &tokens) {
  * @param entry : BGP RIB entry (bgp_update)
  * @return      : JSON formatted string of RIB entry
  */
-std::string BGP::jsonify_entry(BGP *bgp, bgp_update *entry) {
+std::string BGP::jsonify_entry(bgp_update *entry) {
 
     std::stringstream s_s;
     s_s.clear();
@@ -151,7 +151,7 @@ std::string BGP::jsonify_entry(BGP *bgp, bgp_update *entry) {
         s_s << ",\"as_path_length\":" << (int) entry->as_path->length;
         s_s << ",\"as_path\":[";
         for (uint8_t i = 0; i < entry->as_path->length; ++i) {
-            s_s << "\"" << bgp->translate_as_path(entry->nlri.bgp_id,
+            s_s << "\"" << this->translate_as_path(entry->nlri.bgp_id,
                     entry->as_path->seg_value[i]) << "\"";
 
             if ((i + 1) < entry->as_path->length) {
@@ -165,7 +165,7 @@ std::string BGP::jsonify_entry(BGP *bgp, bgp_update *entry) {
         s_s << ",\"as4_path_length\":" << (int) entry->as4_path->length;
         s_s << ",\"as4_path\":[";
         for (uint8_t i = 0; i < entry->as4_path->length; ++i) {
-            s_s << "\"" << bgp->translate_as_path(entry->nlri.bgp_id,
+            s_s << "\"" << this->translate_as_path(entry->nlri.bgp_id,
                     entry->as4_path->seg_value[i]);
 
             if ((i + 1) < entry->as4_path->length) {
@@ -178,7 +178,7 @@ std::string BGP::jsonify_entry(BGP *bgp, bgp_update *entry) {
     s_s << ",\"origin\":\"" << bgp_origin_code_text[entry->origin] << "\",";
 
     s_s << "\"next_hop_str\":\"" << ip_to_string(entry->ipv4_next_hop) << "\",";
-    s_s << "\"next_hop_name\":\"" << bgp->translate_ipv4_next_hop(
+    s_s << "\"next_hop_name\":\"" << this->translate_ipv4_next_hop(
             entry->nlri.bgp_id, entry->ipv4_next_hop) << "\",";
 
     s_s << "\"next_hop_bin\":" << entry->ipv4_next_hop << ",";
@@ -192,21 +192,21 @@ std::string BGP::jsonify_entry(BGP *bgp, bgp_update *entry) {
     }
 
     if (entry->aggregator != nullptr) {
-        s_s << ",\"aggregator_str\":\"" << bgp->translate_aggregator(entry->nlri.bgp_id,
+        s_s << ",\"aggregator_str\":\"" << this->translate_aggregator(entry->nlri.bgp_id,
                 entry->aggregator->origin) << "\",";
         s_s << "\"aggregator_bin\":" << entry->aggregator->origin << ",";
 
-        s_s << "\"aggregator_as_str\":\"" << bgp->translate_as_path(entry->nlri.bgp_id,
+        s_s << "\"aggregator_as_str\":\"" << this->translate_as_path(entry->nlri.bgp_id,
                 entry->aggregator->as) << "\",";
         s_s << "\"aggregator_as_bin\":" << entry->aggregator->as;
     }
 
     if (entry->as4_aggregator != nullptr) {
-        s_s << ",\"as4_aggregator_str\":\"" << bgp->translate_aggregator(entry->nlri.bgp_id,
+        s_s << ",\"as4_aggregator_str\":\"" << this->translate_aggregator(entry->nlri.bgp_id,
                 entry->as4_aggregator->origin) << "\",";
         s_s << "\"as4_aggregator_bin\":" << entry->as4_aggregator->origin << ",";
 
-        s_s << "\"as4_aggregator_as_str\":\"" << bgp->translate_as_path(entry->nlri.bgp_id,
+        s_s << "\"as4_aggregator_as_str\":\"" << this->translate_as_path(entry->nlri.bgp_id,
                 entry->as4_aggregator->as) << "\",";
         s_s << "\"as4_aggregator_as_bin\":" << entry->aggregator->as;
     }
@@ -216,10 +216,10 @@ std::string BGP::jsonify_entry(BGP *bgp, bgp_update *entry) {
             s_s << ",\"community_length\":" << (int) entry->com_seg_length;
             s_s << ",\"community\":[";
             for (uint8_t i = 0; i < entry->com_seg_length; ++i) {
-                s_s << "\"" << bgp->translate_as_path(entry->nlri.bgp_id,
+                s_s << "\"" << this->translate_as_path(entry->nlri.bgp_id,
                         entry->community[i].as);
                 s_s << ":";
-                s_s << bgp->translate_community_value(entry->nlri.bgp_id,
+                s_s << this->translate_community_value(entry->nlri.bgp_id,
                         entry->community[i].value) << "\"";
 
                 if ((i + 1) < entry->com_seg_length) {

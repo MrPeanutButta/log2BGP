@@ -76,6 +76,7 @@ bgp_peer::~bgp_peer() {
 bool alias_sort(const translate_attribs_base &a, const translate_attribs_base &b) {
     return a.code < b.code;
 }
+
 /** Adds values to be aliased by splunk_dumper
  */
 std::string bgp_peer::set_translation(bgp_path_attrib code, uint32_t &match_value, std::string &new_value) {

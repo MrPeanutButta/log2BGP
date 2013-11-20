@@ -35,11 +35,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/761135128/tcp_client.o \
 	${OBJECTDIR}/cli.o \
 	${OBJECTDIR}/cli_main.o \
 	${OBJECTDIR}/cmdparser.o \
 	${OBJECTDIR}/misc.o \
+	${OBJECTDIR}/tcp_client.o \
 	${OBJECTDIR}/util.o \
 	${OBJECTDIR}/util_bgp.o
 
@@ -68,11 +68,6 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cli: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.cc} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cli ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/761135128/tcp_client.o: ../bgpd/tcp_client.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/761135128
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/761135128/tcp_client.o ../bgpd/tcp_client.cpp
-
 ${OBJECTDIR}/cli.o: cli.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -92,6 +87,11 @@ ${OBJECTDIR}/misc.o: misc.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/misc.o misc.cpp
+
+${OBJECTDIR}/tcp_client.o: tcp_client.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/tcp_client.o tcp_client.cpp
 
 ${OBJECTDIR}/util.o: util.cpp 
 	${MKDIR} -p ${OBJECTDIR}

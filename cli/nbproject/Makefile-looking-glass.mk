@@ -35,11 +35,11 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/_ext/761135128/tcp_client.o \
 	${OBJECTDIR}/cli.o \
 	${OBJECTDIR}/cli_main.o \
 	${OBJECTDIR}/cmdparser.o \
 	${OBJECTDIR}/misc.o \
+	${OBJECTDIR}/tcp_client.o \
 	${OBJECTDIR}/util.o \
 	${OBJECTDIR}/util_bgp.o
 
@@ -68,11 +68,6 @@ LDLIBSOPTIONS=-lreadline -lutil -lpthread
 	${MKDIR} -p /bin
 	${LINK.cc} -o /bin/flowlab-cli ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/_ext/761135128/tcp_client.o: nbproject/Makefile-${CND_CONF}.mk ../bgpd/tcp_client.cpp 
-	${MKDIR} -p ${OBJECTDIR}/_ext/761135128
-	${RM} $@.d
-	$(COMPILE.cc) -g -Wall -DLOOKING_GLASS_ONLY_CLI -DTCP_CLIENT_CLI -DUSE_CLI -Iinclude -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/_ext/761135128/tcp_client.o ../bgpd/tcp_client.cpp
-
 ${OBJECTDIR}/cli.o: nbproject/Makefile-${CND_CONF}.mk cli.cpp 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
@@ -92,6 +87,11 @@ ${OBJECTDIR}/misc.o: nbproject/Makefile-${CND_CONF}.mk misc.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Wall -DLOOKING_GLASS_ONLY_CLI -DTCP_CLIENT_CLI -DUSE_CLI -Iinclude -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/misc.o misc.cpp
+
+${OBJECTDIR}/tcp_client.o: nbproject/Makefile-${CND_CONF}.mk tcp_client.cpp 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} $@.d
+	$(COMPILE.cc) -g -Wall -DLOOKING_GLASS_ONLY_CLI -DTCP_CLIENT_CLI -DUSE_CLI -Iinclude -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/tcp_client.o tcp_client.cpp
 
 ${OBJECTDIR}/util.o: nbproject/Makefile-${CND_CONF}.mk util.cpp 
 	${MKDIR} -p ${OBJECTDIR}
