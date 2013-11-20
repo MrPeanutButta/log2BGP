@@ -1,0 +1,14 @@
+language: cpp
+compiler:
+  - g++
+  - clang++
+branches:
+  only:
+    - master
+notifications:
+  recipients:
+    - aaron.hebert@gmail.com
+    - aaron.hebert@rackspace.com
+  email:
+    on_success: change
+    on_failure: always

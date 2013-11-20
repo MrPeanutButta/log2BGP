@@ -76,7 +76,6 @@
                    displayName="Important Files"
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
-      <itemPath>../.travis.yml</itemPath>
       <itemPath>Makefile</itemPath>
     </logicalFolder>
     <itemPath>../LICENSE</itemPath>
