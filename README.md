@@ -1,4 +1,4 @@
-### Border Gateway Protocol: A transparent looking-glass
+### Border Gateway Protocol: A transparent looking-glass [![Build Status](https://travis-ci.org/ahebert/BigPlg.png?branch=master)](https://travis-ci.org/ahebert/BigPlg)
 This BGP looking-glass allows the collection of the IPv4 Internet 
 routing table which may be viewed by service providers and/or ISP customers to validate 
 IP routing across autonomous systems.
