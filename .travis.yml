@@ -3,7 +3,7 @@ compiler:
   - g++
   - clang++
 before_script:
-  - apt-get install libreadline-dev
+  - sudo apt-get install libreadline-dev
 script: make
 branches:
   only:
