@@ -309,7 +309,7 @@
       <compileType>
         <ccTool>
           <standard>8</standard>
-          <commandlineTool>g++</commandlineTool>
+          <commandlineTool>g++4.8</commandlineTool>
           <incDir>
             <pElem>include/cli</pElem>
             <pElem>include</pElem>
