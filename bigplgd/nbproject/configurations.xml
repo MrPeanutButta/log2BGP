@@ -78,6 +78,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>../.travis.yml</itemPath>
     <itemPath>../LICENSE</itemPath>
     <itemPath>../README.md</itemPath>
   </logicalFolder>
@@ -183,6 +184,8 @@
           <Elem>http://aaronhebert.net/bgplg</Elem>
         </packAddInfosListElem>
       </packaging>
+      <item path="../.travis.yml" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="../LICENSE" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../README.md" ex="false" tool="3" flavor2="0">
@@ -362,6 +365,8 @@
           <packInfoListElem name="Description" value="..." mandatory="false"/>
         </packInfoList>
       </packaging>
+      <item path="../.travis.yml" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="../LICENSE" ex="false" tool="3" flavor2="0">
       </item>
       <item path="../README.md" ex="false" tool="3" flavor2="0">
