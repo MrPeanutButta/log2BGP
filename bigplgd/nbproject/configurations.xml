@@ -105,6 +105,7 @@
         <ccTool>
           <developmentMode>5</developmentMode>
           <standard>8</standard>
+          <commandlineTool>g++4.8</commandlineTool>
           <incDir>
             <pElem>include/cli</pElem>
             <pElem>include</pElem>
