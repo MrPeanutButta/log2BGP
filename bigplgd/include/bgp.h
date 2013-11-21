@@ -71,7 +71,7 @@ public:
 
     /* returns all current info on prefix
      * /bgp/ipv4/:prefix
-     * /bgp/ipv4/:;prefix/history
+     * /bgp/ipv4/:prefix/history
      *
      * api-get prefix x.x.x.x
      * api-get prefix x.x.x.x history
@@ -80,12 +80,10 @@ public:
 
     /* returns all current prefixes from origin ASN
      * /bgp/ipv4/from-asn/:ASN
-     * /bgp/ipv4/from-asn/:ASN/history
      *
      * api-get all-from-asn ##
-     * api-get all-from-asn ## history
      */
-    static std::string api_get_prefix_origin_as(BGP *, std::vector<std::string> &);
+    static std::string api_get_all_origin_as(BGP *, std::vector<std::string> &);
 
     /* returns all prefixes with noexport and noadvertise community
      * values set

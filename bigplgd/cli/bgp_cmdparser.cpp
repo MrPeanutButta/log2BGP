@@ -104,8 +104,7 @@ std::string cmd_parser::ExecuteLine(BGP *bgp, const char *c_line) {
         std::stringstream s_s;
         s_s.clear();
         s_s << c_line <<
-                " % Unknown command or computer name, \
-                or unable to find computer address.\n";
+                " % invalid command.\n";
         tokens.clear();
         return s_s.str().c_str();
     }

@@ -537,7 +537,7 @@ void BGP::proc_adj_rib_wdraw_queue(void) {
  * for a full internet table.
  *
  * overwriting key pair prevents duplicates and
- * signals an implicit withdraw.
+ * signals an implicit withdraw.flo
  *
  * update - update pulled off the queue to be inserted in to RIB.
  */

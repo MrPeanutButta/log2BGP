@@ -6,6 +6,7 @@
 #include <time.h>
 #include "bgp_msg.h"
 #include "bgp.h"
+#include "bgp_adj_rib.h"
 #include "misc.h"
 #include "bgp_database.h"
 
@@ -123,6 +124,70 @@ std::string BGP::api_get_prefix(BGP *bgp, std::vector<std::string> &tokens) {
     }
 
     s_s << "]}";
+    return s_s.str();
+}
+
+struct prefix_matches {
+    uint32_t ip;
+    uint8_t length;
+};
+
+/**
+ *
+ * @param bgp    : main bgp instance
+ * @param tokens : "api-get all-from-asn ##"
+ * @return a JSON array of prefixes owned by ASN
+ */
+std::string BGP::api_get_all_origin_as(BGP* bgp, std::vector<std::string>& tokens) {
+
+    bgp->lock_adj_rib_in();
+
+    uint32_t asn = string_to_uint32_t(tokens[2]);
+    // container to hold matches
+    std::vector<prefix_matches> ip_matches;
+
+    uint8_t len = 0;
+    for (bgp_adj_rib::iterator it_entry = bgp->get_adj_rib_in().begin();
+            it_entry != bgp->get_adj_rib_in().end(); ++it_entry) {
+
+        if (it_entry->second.as_path != nullptr) {
+            len = (it_entry->second.as_path->length - 1);
+
+            // we only want blocks larger than or equal too /24
+            if (it_entry->second.nlri.prefix_length <= 24) {
+                if (it_entry->second.as_path->seg_value[len] == asn) {
+                    ip_matches.push_back({it_entry->second.nlri.prefix,
+                        it_entry->second.nlri.prefix_length});
+                }
+            }
+        }
+    }
+
+    bgp->unlock_adj_rib_in();
+
+    std::stringstream s_s;
+    s_s.clear();
+
+    s_s << "{\"entries\":[";
+
+    if (!ip_matches.empty()) {
+        std::vector<prefix_matches>::iterator it_match;
+
+        for (it_match = ip_matches.begin();
+                it_match != ip_matches.end();
+                ++it_match) {
+
+            s_s << "\"" << ip_to_string(it_match->ip) << '/'
+                    << (int) it_match->length << "\"";
+
+            if ((it_match + 1) != ip_matches.end()) {
+                s_s << ",";
+            }
+        }
+    }
+
+    s_s << "]}";
+
     return s_s.str();
 }
 

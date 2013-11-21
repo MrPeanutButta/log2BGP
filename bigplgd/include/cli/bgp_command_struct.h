@@ -22,9 +22,14 @@ COMMAND cmds[] = {
             {"prefix", BGP::api_get_prefix,
                 {
                     {"<x.x.x.x>", BGP::api_get_prefix}
+                }},
+            {"all-from-asn", BGP::api_get_prefix,
+                {
+                    {"<ASN>", BGP::api_get_all_origin_as}
                 }}
         }},
-    { "show", BGP::Show,
+    {
+        "show", BGP::Show,
         {
             { "bgp", BGP::Show,
                 {
@@ -36,16 +41,22 @@ COMMAND cmds[] = {
                     { "adj-rib-in", BGP::show_bgp_adj_rib_in},
                     { "rib-withdrawn", BGP::show_bgp_adj_rib_wdrawn}
                 }}
-        }},
-    { "write", BGP::write_configs},
-    { "dumper", BGP::proto_bgp_toggle_update_dump,
+        }
+    },
+    {
+        "write", BGP::write_configs
+    },
+    {
+        "dumper", BGP::proto_bgp_toggle_update_dump,
         {
             { "on", BGP::proto_bgp_toggle_update_dump},
             { "off", BGP::proto_bgp_toggle_update_dump}
-        }},
+        }
+    },
 
     /// Available through CONFIGPROTOBGP
-    { "neighbor", BGP::proto_bgp_neighbor,
+    {
+        "neighbor", BGP::proto_bgp_neighbor,
         {
             { "<x.x.x.x>", BGP::proto_bgp_neighbor,
                 {
@@ -164,7 +175,8 @@ COMMAND cmds[] = {
                                 }}
                         }}
                 }}
-        }},
+        }
+    },
 
     {
         "bgp-id", BGP::set_bgp_id,
