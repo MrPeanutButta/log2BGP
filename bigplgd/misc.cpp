@@ -36,7 +36,6 @@
 #include <arpa/inet.h>
 #include <sys/wait.h>
 #include <iomanip>
-//#include "defines.h"
 
 #ifdef USE_CLI
 
@@ -116,19 +115,13 @@ std::string time_stamp(void) {
 std::string time_hh_mm_ss(const time_t &seconds_t) {
 
     time_t sec_passed = seconds_t;
-
     int hours = sec_passed / 3600;
-
     sec_passed %= 3600;
-
     int mins = sec_passed / 60;
-
     sec_passed %= 60;
-
     int secs = sec_passed;
 
     std::stringstream s_s;
-
     s_s << std::setfill('0') << std::setw(4) << hours << ":"
             << std::setfill('0') << std::setw(2) << mins << ":"
             << std::setfill('0') << std::setw(2) << secs;
@@ -162,7 +155,7 @@ uint32_t string_to_ip(const std::string &ip) {
     return 0;
 }
 
-uint8_t string_to_uint_8_t(const std::string &value) {
+uint8_t string_to_uint8_t(const std::string &value) {
     std::stringstream s_s(value);
     uint8_t ret_val;
     return (s_s >> ret_val) ? ret_val : 0;

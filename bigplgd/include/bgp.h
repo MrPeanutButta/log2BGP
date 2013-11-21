@@ -77,11 +77,25 @@ public:
     static std::string api_get_prefix(BGP *, std::vector<std::string> &);
 
     /* returns all current prefixes from origin ASN
-     * /bgp/ipv4/from-asn/:ASN
+     * /bgp/ipv4/from-asn/:ASN/:length
      *
-     * api-get all-from-asn ##
+     * api-get all-from-asn :asn :length
      */
     static std::string api_get_all_origin_as(BGP *, std::vector<std::string> &);
+
+    /* returns all non rfc 1918 from ASN
+     * '/bgp/ipv4/all/public/from-asn/:asn/:length'
+     *
+     * api-get public-from-asn :asn :length
+     */
+    static std::string api_get_public_origin_as(BGP *, std::vector<std::string> &);
+
+    /* returns all rfc 1918 from ASN
+     * '/bgp/ipv4/all/private/from-asn/:asn/:length'
+     *
+     * api-get private-from-asn :asn :length
+     */
+    static std::string api_get_private_origin_as(BGP *, std::vector<std::string> &);
 
     /* returns all prefixes with noexport and noadvertise community
      * values set

@@ -46,12 +46,12 @@ end
 
 # get all publicly routable blocks with lessthan or eq to length
 get '/bgp/ipv4/all/public/from-asn/:asn/:length' do
-  write("api-get public-from-asn #{params[:asn]} #{params[:length]}")
+  write("api-get all-public-asn #{params[:asn]} #{params[:length]}")
 end
 
 # get all private blocks with lessthan or eq to length (rfc1918)
 get '/bgp/ipv4/all/private/from-asn/:asn/:length' do
-  write("api-get private-from-asn #{params[:asn]} #{params[:length]}")
+  write("api-get all-private-asn #{params[:asn]} #{params[:length]}")
 end
 
 # get all blocks marked for no-export/no-advertise from AS

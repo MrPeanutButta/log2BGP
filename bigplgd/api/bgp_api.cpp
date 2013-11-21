@@ -133,9 +133,11 @@ struct prefix_matches {
 };
 
 /**
+ * matches:
+ *      '/bgp/ipv4/all/from-asn/:asn/:length'
  *
  * @param bgp    : main bgp instance
- * @param tokens : "api-get all-from-asn ##"
+ * @param tokens : "api-get all-from-asn :asn :length"
  * @return a JSON array of prefixes owned by ASN
  */
 std::string BGP::api_get_all_origin_as(BGP* bgp, std::vector<std::string>& tokens) {
@@ -143,6 +145,8 @@ std::string BGP::api_get_all_origin_as(BGP* bgp, std::vector<std::string>& token
     bgp->lock_adj_rib_in();
 
     uint32_t asn = string_to_uint32_t(tokens[2]);
+    uint32_t length = string_to_uint32_t(tokens[3]);
+
     // container to hold matches
     std::vector<prefix_matches> ip_matches;
 
@@ -154,7 +158,7 @@ std::string BGP::api_get_all_origin_as(BGP* bgp, std::vector<std::string>& token
             len = (it_entry->second.as_path->length - 1);
 
             // we only want blocks larger than or equal too /24
-            if (it_entry->second.nlri.prefix_length <= 24) {
+            if (it_entry->second.nlri.prefix_length <= length) {
                 if (it_entry->second.as_path->seg_value[len] == asn) {
                     ip_matches.push_back({it_entry->second.nlri.prefix,
                         it_entry->second.nlri.prefix_length});
@@ -298,3 +302,176 @@ std::string BGP::jsonify_entry(bgp_update *entry) {
 
     return s_s.str();
 }
+
+struct ip_class {
+    uint32_t prefix;
+    uint32_t range;
+    uint8_t length;
+};
+
+struct rfc1918 {
+    std::string ip;
+    uint8_t length;
+};
+
+const rfc1918 rfc_ips[] = {
+    {"10.0.0.0", 8},
+    {"172.16.0.0", 12},
+    {"192.168.0.0", 16}
+};
+
+extern uint32_t get_ipv4_high_range(const uint32_t &, const uint8_t &);
+
+/**
+ * checks if the passed prefix is RFC1918
+ *
+ * @param prefix : ipv4 prefix to check
+ * @return true if 1918
+ */
+bool is_rfc1918(const uint32_t &prefix) {
+
+    in_addr n_ip; // reused
+    ip_class ipc[3];
+
+    // prepare our structures
+    for (int i = 0; i < 3; ++i) {
+        inet_aton(rfc_ips[i].ip.c_str(), &n_ip);
+        ipc[i].prefix = n_ip.s_addr;
+        ipc[i].length = rfc_ips[i].length;
+        ipc[i].range = get_ipv4_high_range(ipc[i].prefix, ipc[i].length);
+    }
+
+    // perform the range check
+    for (const auto &ip_block : ipc) {
+        // if n_ip.s_addr is in subnet range, it's a match
+        if (memcmp(&ip_block.prefix, &prefix, sizeof (uint32_t)) <= 0 &&
+                memcmp(&ip_block.range, &prefix, sizeof (uint32_t)) >= 0) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+std::string BGP::api_get_public_origin_as(BGP* bgp,
+        std::vector<std::string> &tokens) {
+
+
+    bgp->lock_adj_rib_in();
+
+    uint32_t asn = string_to_uint32_t(tokens[2]);
+    uint32_t length = string_to_uint32_t(tokens[3]);
+
+    // container to hold matches
+    std::vector<prefix_matches> ip_matches;
+
+    uint8_t len = 0;
+    for (bgp_adj_rib::iterator it_entry = bgp->get_adj_rib_in().begin();
+            it_entry != bgp->get_adj_rib_in().end(); ++it_entry) {
+
+        if (it_entry->second.as_path != nullptr) {
+            len = (it_entry->second.as_path->length - 1);
+
+            // if isn't rfc1918 then lets check the length
+            if (!is_rfc1918(it_entry->second.nlri.prefix)) {
+                // we only want blocks larger than or equal to length
+                if (it_entry->second.nlri.prefix_length <= length) {
+                    if (it_entry->second.as_path->seg_value[len] == asn) {
+                        ip_matches.push_back({it_entry->second.nlri.prefix,
+                            it_entry->second.nlri.prefix_length});
+                    }
+                }
+            }
+        }
+    }
+
+    bgp->unlock_adj_rib_in();
+
+    std::stringstream s_s;
+    s_s.clear();
+
+    s_s << "{\"entries\":[";
+
+    if (!ip_matches.empty()) {
+        std::vector<prefix_matches>::iterator it_match;
+
+        for (it_match = ip_matches.begin();
+                it_match != ip_matches.end();
+                ++it_match) {
+
+            s_s << "\"" << ip_to_string(it_match->ip) << '/'
+                    << (int) it_match->length << "\"";
+
+            if ((it_match + 1) != ip_matches.end()) {
+                s_s << ",";
+            }
+        }
+    }
+
+    s_s << "]}";
+
+    return s_s.str();
+
+}
+
+std::string BGP::api_get_private_origin_as(BGP* bgp,
+        std::vector<std::string> &tokens) {
+
+
+    bgp->lock_adj_rib_in();
+
+    uint32_t asn = string_to_uint32_t(tokens[2]);
+    uint32_t length = string_to_uint32_t(tokens[3]);
+
+    // container to hold matches
+    std::vector<prefix_matches> ip_matches;
+
+    uint8_t len = 0;
+    for (bgp_adj_rib::iterator it_entry = bgp->get_adj_rib_in().begin();
+            it_entry != bgp->get_adj_rib_in().end(); ++it_entry) {
+
+        if (it_entry->second.as_path != nullptr) {
+            len = (it_entry->second.as_path->length - 1);
+
+            // if is rfc1918 then lets check the length
+            if (is_rfc1918(it_entry->second.nlri.prefix)) {
+                // we only want blocks larger than or equal to length
+                if (it_entry->second.nlri.prefix_length <= length) {
+                    if (it_entry->second.as_path->seg_value[len] == asn) {
+                        ip_matches.push_back({it_entry->second.nlri.prefix,
+                            it_entry->second.nlri.prefix_length});
+                    }
+                }
+            }
+        }
+    }
+
+    bgp->unlock_adj_rib_in();
+
+    std::stringstream s_s;
+    s_s.clear();
+
+    s_s << "{\"entries\":[";
+
+    if (!ip_matches.empty()) {
+        std::vector<prefix_matches>::iterator it_match;
+
+        for (it_match = ip_matches.begin();
+                it_match != ip_matches.end();
+                ++it_match) {
+
+            s_s << "\"" << ip_to_string(it_match->ip) << '/'
+                    << (int) it_match->length << "\"";
+
+            if ((it_match + 1) != ip_matches.end()) {
+                s_s << ",";
+            }
+        }
+    }
+
+    s_s << "]}";
+
+    return s_s.str();
+
+}
+

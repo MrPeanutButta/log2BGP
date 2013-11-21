@@ -23,9 +23,26 @@ COMMAND cmds[] = {
                 {
                     {"<x.x.x.x>", BGP::api_get_prefix}
                 }},
-            {"all-from-asn", BGP::api_get_prefix,
+            {"all-from-asn", BGP::api_get_all_origin_as,
                 {
-                    {"<ASN>", BGP::api_get_all_origin_as}
+                    {"<ASN>", BGP::api_get_all_origin_as,
+                        {
+                            {"<LENGTH>", BGP::api_get_all_origin_as}
+                        }}
+                }},
+            {"all-public-asn", BGP::api_get_public_origin_as,
+                {
+                    {"<ASN>", BGP::api_get_public_origin_as,
+                        {
+                            {"<LENGTH>", BGP::api_get_public_origin_as}
+                        }}
+                }},
+            {"all-private-asn", BGP::api_get_private_origin_as,
+                {
+                    {"<ASN>", BGP::api_get_private_origin_as,
+                        {
+                            {"<LENGTH>", BGP::api_get_private_origin_as}
+                        }}
                 }}
         }},
     {
