@@ -34,8 +34,6 @@
 #include "bgp_adj_rib.h"
 #include "bgp_database.h"
 
-#include "mongo/bson/bson.h"
-
 /** Performs all management of peer fsm thread and cli commands.
  *
  * Main thread processes rib-in-queue.
