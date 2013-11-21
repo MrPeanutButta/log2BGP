@@ -143,28 +143,26 @@ void tcp_client::disconnect(void) {
     tx = NULL;
     this->tcp_socket = 0;
 }
-
 /*! tcp_client::set_tx_buffer_size - increase tx buffer size.
  *
  * size - the amount of data in bytes the buffer will store
  * before flush().
  */
-bool tcp_client::set_bgp_tx_buffer_size(const int &size) {
+bool tcp_client::set_bgp_tx_buffer_size(const size_t &size) {
     bgp_tx_buffer_size = size;
     return !setvbuf(this->tx, NULL, _IOFBF, size);
 }
-
 /*! tcp_client::set_rx_buffer_size - increase tx buffer size.
  *
  * size - the amount of data in bytes the buffer will store
  * before flush().
  */
-bool tcp_client::set_bgp_rx_buffer_size(const int &size) {
+bool tcp_client::set_bgp_rx_buffer_size(const size_t &size) {
     bgp_rx_buffer_size = size;
     return !setvbuf(this->rx, NULL, _IOFBF, size);
 }
 
-bool tcp_client::set_tcp_tx_buffer_size(const int &size) {
+bool tcp_client::set_tcp_tx_buffer_size(const size_t &size) {
 
     tcp_tx_socket_buffer_size = size;
     bool ret_val(false);
@@ -176,7 +174,7 @@ bool tcp_client::set_tcp_tx_buffer_size(const int &size) {
     return ret_val;
 }
 
-bool tcp_client::set_tcp_rx_buffer_size(const int &size) {
+bool tcp_client::set_tcp_rx_buffer_size(const size_t &size) {
 
     tcp_rx_socket_buffer_size = size;
     bool ret_val(false);
@@ -187,11 +185,10 @@ bool tcp_client::set_tcp_rx_buffer_size(const int &size) {
 
     return ret_val;
 }
-
 /*!tcp_client::set_rx_buffer_size - resize bgp and tcp socket buffers
  */
-bool tcp_client::set_tcp_bgp_rx_buffer_size(const int &tcp_buffer_size, 
-        const int &bgp_buffer_size) {
+bool tcp_client::set_tcp_bgp_rx_buffer_size(const size_t &tcp_buffer_size,
+        const size_t &bgp_buffer_size) {
 
     tcp_rx_socket_buffer_size = tcp_buffer_size;
     bgp_rx_buffer_size = bgp_buffer_size;
@@ -205,11 +202,10 @@ bool tcp_client::set_tcp_bgp_rx_buffer_size(const int &tcp_buffer_size,
 
     return ret_val;
 }
-
 /*!tcp_client::set_tx_buffer_size - resize bgp and tcp socket buffers
  */
-bool tcp_client::set_tcp_bgp_tx_buffer_size(const int &tcp_buffer_size, 
-        const int &bgp_buffer_size) {
+bool tcp_client::set_tcp_bgp_tx_buffer_size(const size_t &tcp_buffer_size,
+        const size_t &bgp_buffer_size) {
 
     tcp_tx_socket_buffer_size = tcp_buffer_size;
     bgp_tx_buffer_size = bgp_buffer_size;
@@ -264,7 +260,7 @@ bool tcp_client::connected(void) {
     this->lock_feof();
     bool connected_((!feof(rx) && !feof(tx)));
     this->unlock_feof();
-    
+
     return connected_;
 }
 
@@ -272,7 +268,7 @@ bool tcp_client::connected(void) {
  *
  * calls fread() on rx stream.
  */
-size_t tcp_client::read(void *data, const size_t &size, 
+size_t tcp_client::read(void *data, const size_t &size,
         const size_t &count) {
 
     if (!connected()) {
@@ -281,7 +277,7 @@ size_t tcp_client::read(void *data, const size_t &size,
     }
 
     size_t read_(fread(data, size, count, this->rx));
-    
+
     return read_;
 }
 
@@ -301,7 +297,7 @@ int tcp_client::read_char(void) {
  *
  * calls fwrite() on tx stream.
  */
-size_t tcp_client::write(void *data, const size_t &size, 
+size_t tcp_client::write(void *data, const size_t &size,
         const size_t &count) {
 
     if (!connected()) {
