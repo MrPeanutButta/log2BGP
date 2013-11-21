@@ -3,7 +3,7 @@ compiler:
   - g++
 before_install:
   - chmod +x build_bigplg
-script: build_bigplg
+script: $PWD/build_bigplg
 branches:
   only:
     - master
