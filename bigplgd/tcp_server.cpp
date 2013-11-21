@@ -17,6 +17,7 @@
  */
 
 #include <vector>
+#include <iterator>
 #include <cstring>
 #include <syslog.h>
 #include <unistd.h>
@@ -322,7 +323,7 @@ void tcp_server::sinatra_api(std::thread *connection_thread, int client_socket) 
         if (len == EOF) return;
 
         // read command
-        fgetws(wbuffer, len + 1, c_rx);
+        wchar_t *dummy = fgetws(wbuffer, len + 1, c_rx);
 
         /* need to makes this an api only command
          * incase we are reading from a direct socket and
