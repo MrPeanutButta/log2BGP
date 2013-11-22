@@ -27,6 +27,11 @@ std::string BGP::api_get_prefix(BGP *bgp, std::vector<std::string> &tokens) {
 
     s_s << "{\"entries\":[";
 
+    if (tokens.size() < 3) {
+        s_s << "\"prefix\":\"invalid number of parameters\"]}";
+        return s_s.str();
+    }
+
     in_addr n_ip;
     bool dump_history = false;
     records ret_rec;
