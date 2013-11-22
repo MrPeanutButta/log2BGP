@@ -6,8 +6,8 @@ comments: true
 sharing: true
 footer: true
 ---
-### Starting the REST API
-The REST API script can be found in `flowlab_bgp_lg/bgpd/api`. The script name is `bgp_api.rb`. The ruby interpreter will need super user access to be able to bind and listen for requests.
+### Starting the API
+The JSON API script can be found in `flowlab_bgp_lg/bgpd/api`. The script name is `bgp_api.rb`. The ruby interpreter will need super user access to be able to bind and listen for requests.
 
 __A very important note about return values:__ ALL values ending in __`_bin`__ are in __Network Byte Order__
 
@@ -15,15 +15,35 @@ __A very important note about return values:__ ALL values ending in __`_bin`__ a
 * [byteorder(3)](https://www.linux.com/learn/docs/man/byteorder3)
 
 
->     $cd flowlab_bgp_lg/bgpd/api
->     #daemonize example
->     #sudo ruby bgp_api.rb &
+>     $cd BigPlg/bigplgd/api
 >     $sudo ruby bgp_api.rb
 >     == Sinatra/1.4.4 has taken the stage on 4567 for development with backup from Thin
 >     >Thin web server (v1.3.1 codename Triple Espresso)
 >     >Maximum connections set to 1024
 >     >Listening on 0.0.0.0:4567, CTRL+C to stop
     
+### API Calls
+#### URL and Socket API Calls
+[s] = socket call 
+[u] = url call
+__Bold__ = variable
+
+* [s] api-get prefix __x.x.x.x__
+* [u] /bgp/ipv4/__:prefix__
+    + get prefix data as it exists now
+* [s] api-get prefix __x.x.x.x__ history
+* [u] /bgp/ipv4/__:prefix__/history
+    + same as above, but fetch historical data also
+* [s] api-get all-from-asn __asn__ __length__
+* [u] /bgp/ipv4/all/from-asn/__:asn__/__:length__
+    + get all prefixes from ASN lessthan or equal to CIDR length; useful for seeing what an AS is advertising.
+* [s] api-get all-public-asn __asn__ __length__
+* [u] /bgp/ipv4/all/public/from-asn/__:asn__/__:length__
+    + get all publicly routable blocks from ASN with lessthan or equal to length
+* [s] api-get all-private-asn __asn__ __length__
+* [u] /bgp/ipv4/all/private/from-asn/__:asn__/__:length__
+    + get all private blocks from ASN with lessthan or equal to length ([rfc1918](https://tools.ietf.org/html/rfc1918#section-3 "rfc1918")); useful if BigPlg has a peering session within the data-center.
+
 ### Making API Calls with HTTP
 Making API calls is straight forwad. You will need some JSON reader in your application to read the results. You can test your calls by using a JSON read in your web browser.
 
@@ -125,7 +145,7 @@ Depending on your language of choice this can be done in a number of ways. Ideal
 
 To demonstrate socket API calls I will use telnet. This doesn't mean that it's a telnet daemon, telnet simply connects via TCP and allows us to write directly to the socket.
 
-### Socket API Commands
+### Calling Socket API
 __Get current prefix data:__ `api-get prefix x.x.x.x`<br>
 __Get current and hitorical prefix data:__`api-get prefix x.x.x.x history`
 

@@ -1,26 +1,19 @@
 ---
 layout: page
-title: Open Source BGP Looking-glass (BigPlg)
+title: BigPlg: A Open Source BGP Looking-glass
 date: 2013-11-02 06:45
 comments: true
 sharing: true
 footer: true
 ---
-### Border Gateway Protocol: A transparent looking-glass
-This BGP looking-glass allows the collection of the IPv4 Internet 
-routing table which may be viewed by service providers and/or ISP customers to validate 
-IP routing across autonomous systems.
+### Big Protocol looking-glass: All your RIBs are belong to me
+BigPlg allows the collection of the IPv4 Internet routing table which may be viewed by service providers and/or ISP customers to validate IP routing across autonomous systems.
 
-Routing updates may also have attributes aliased to become (graph) readable. This function 
-exists to allow the exporting of RIB updates to splunk, or any such data collector.
+Routing updates may also have attributes aliased to become (graph) readable. This function exists to allow the exporting of RIB updates to Splunk, or any such data collector.
 
-A beneficial side-effect of collecting BGP routing information is the ability to track BGP updates/events local or remote(upstream). To analyze events splunk is supported. A JSON/Socket API is currently under development.
+A beneficial side-effect of collecting BGP routing information is the ability to track BGP updates/events local or remote(upstream). To analyze events Splunk is supported. A JSON/Socket API is currently under development.
 
-Custom graphs can be easily implemented if taken the time to do so. There's
-certainly no need to rely on splunk if one developed another way of displaying
-data. This project is meant to be nothing more than a route collector, and 
-it's interface is solely CLI(command line interface). This project does not have
-graph data "out of the box".
+Custom graphs can be easily implemented if taken the time to do so. There's certainly no need to rely on Splunk if one developed another way of displaying data. This project is meant to be nothing more than a route collector, and it's interface is solely CLI(command line interface). This project does not have graph data "out of the box".
 
 ![bgplg](http://aaronhebert.net/bgplg/images/screeny.png?raw=true)
 
@@ -31,12 +24,11 @@ On large-scale networks, this daemon may serve as a BGP routing information base
 * **[Installing](http://aaronhebert.net/bgplg/installing)**
 * **[Command-line Basics](http://aaronhebert.net/bgplg/start-cli)** 
 * **[Command-line Refence](http://aaronhebert.net/bgplg/cli-reference)**
-* **[REST API Reference](http://aaronhebert.net/bgplg/api-reference)**
+* **[JSON API Reference](http://aaronhebert.net/bgplg/api-reference)**
 
-### Release Notes on bgpd v1.0.3(captain's log)
+### Release Notes on BigPlg v1.0.3(captain's log)
 New capabilities in this revision, and 1 bug fix.
-I've decided to use the daemons current binary database as a means of
-indexing BGP updates. These entries can be queried via a URL served by the ruby library Sinatra, or directly served via TCP socket API call.
+I've decided to use the daemons current binary database as a means of indexing BGP updates. These entries can be queried via a URL served by the ruby library Sinatra, or directly served via TCP socket API call.
 
 The BGP event database is organized by [peer id|prefix] key pair in the RIB, and that RIB entry holds all indexes for BGP event data. Each prefix may occupy up to 1000 entries. Once the max entry limit is reached (1000 entries), the oldest entries will begin to be overwritten. It's recommended that you export to some log collector if you wish to keep the data.
 

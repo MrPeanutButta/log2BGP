@@ -113,7 +113,7 @@ void tcp_server::listen_loop(const int &socket,
     // listen until parent BGP thread exits
     while (!parent_bgp_instance->stop_and_exit()) {
         // listen for connection
-        if (::listen(socket, 5) == -1) {
+        if (::listen(socket, 256) == -1) {
             syslog(LOG_DEBUG, "unable to listen for connections");
             // failed, throw errno
             throw std::system_error(errno, std::system_category());

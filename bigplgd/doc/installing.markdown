@@ -6,12 +6,12 @@ comments: true
 sharing: true
 footer: true
 ---
-### Building and Installing Flowlab from GIT repo
+### Building and Installing from GIT repo
 ### Prerequisites:
 * Debian 3.2.51-1 x86_64
 * g++ (Debian 4.8.2-1) 4.8.2
 
-#### bgpd
+#### bigplgd
 * libpthread.so.0
 * libstdc++.so.6
 * libm.so.6
@@ -29,22 +29,14 @@ footer: true
 * libgcc_s.so.1
 * libc.so.6
 
-### Installing Prereqs
-__ruby:__ 			``sudo apt-get install ruby``<br>
-__sinatra:__ 		``gem install sinatra``<br>
-__libreadline:__ 	``sudo apt-get install libreadline-dev``
-
 ### Installing Binary Releases (coming soon)
 Download from http://aaronhebert.net/bgplg/packages/
 
-### Compiling the Source
-Download from GitHub: https://github.com/ahebert/BigPlg
-
-        git clone https://github.com/ahebert/BigPlg.git
-        cd flowlab_bgp_lg
-        make
-
-bgpd and flowlab-cli will be built in the `dist` directories. There may be a need to compile flowlab-cli with `-D LOOKING_GLASS_ONLY_CLI` to allow read-only access to certain users. It's suggested that this read-only CLI be named flowlab-lg-cli to discern between the admin console and user console.
+### Installing Prereqs and Compiling the Source
+The `build_bigplg` scrit will attempt to install all prerequisites and call make to compile the project.
+    $ git clone https://github.com/ahebert/BigPlg.git
+    $ cd BigPlg
+    $ ./build_bigplg
 
 #### Compiling Options
 The follow can be specified by using the -D compiler flag.
@@ -65,12 +57,12 @@ The follow can be specified by using the -D compiler flag.
 ### Creating a User Account
 Create a user account which points to /bin/flowlab-cli as its shell. This will allow the OS to provide authentication for us whether it's PAM or TACACS+.
 
-        sudo useradd flowlab-user -M -N -s /bin/flowlab-cli -p somepassword
+        sudo useradd bigplg-user -M -N -s /bin/bigplg-cli -p somepassword
 
 ### Testing the Shell Account
-Test the new user account by SSH or Telnet. Whatever service you have configured, flowlab-cli should be the shell for the new user.
+Test the new user account by SSH or Telnet. Whatever service you have configured, bigplg-cli should be the shell for the new user.
 
-        ssh -l flowlab-user 10.1.1.1
+        ssh -l bigplg-user 10.1.1.1
 
 ### Configuring syslog (optional)
 This syslogd config can be copied to `/etc/rsyslog.conf`
