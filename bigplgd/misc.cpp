@@ -147,6 +147,8 @@ std::string ip_to_string(const uint32_t &ip) {
 uint32_t string_to_ip(const std::string &ip) {
     in_addr n_ip;
 
+    if (ip.empty()) return 0;
+    
     if (inet_aton(ip.c_str(), &n_ip) != -1) {
         return n_ip.s_addr;
     }

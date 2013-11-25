@@ -329,8 +329,6 @@
           </incDir>
           <commandLine>-g3</commandLine>
           <preprocessorList>
-            <Elem>BGP_GDB_DEBUG_NO_DAEMON</Elem>
-            <Elem>BGP_GDB_DEBUG_RIB_PROFILE</Elem>
             <Elem>TCP_CLIENT_BGPD</Elem>
             <Elem>USE_BGPD</Elem>
           </preprocessorList>
