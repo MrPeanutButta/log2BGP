@@ -81,7 +81,7 @@
           <warningLevel>2</warningLevel>
         </asmTool>
         <linkerTool>
-          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/flowlab-cli</output>
+          <output>${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/bigplg-cli</output>
           <linkerLibItems>
             <linkerOptionItem>-lreadline -lutil</linkerOptionItem>
             <linkerOptionItem>-lpthread</linkerOptionItem>

@@ -20,8 +20,8 @@ CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux-x86
 CND_ARTIFACT_NAME_Debug=bigplgd
 CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux-x86/bigplgd
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux-x86/package
-CND_PACKAGE_NAME_Debug=bigplgd.deb
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/bigplgd.deb
+CND_PACKAGE_NAME_Debug=bigplgd-1.0.3-${CND_PLATFORM}_64.deb
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux-x86/package/bigplgd-1.0.3-${CND_PLATFORM}_64.deb
 #
 # include compiler specific variables
 #

@@ -21,6 +21,10 @@ __A very important note about return values:__ ALL values ending in __`_bin`__ a
 >     >Thin web server (v1.3.1 codename Triple Espresso)
 >     >Maximum connections set to 1024
 >     >Listening on 0.0.0.0:4567, CTRL+C to stop
+
+or if installed from binary package.
+
+    sudo bigplg-api
     
 ### API Calls
 #### URL and Socket API Calls

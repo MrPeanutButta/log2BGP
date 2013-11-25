@@ -65,15 +65,23 @@ copyFileToTmpDir "${OUTPUT_PATH}" "${NBTMPDIR}//usr/sbin/${OUTPUT_BASENAME}" 075
 
 cd "${TOP}"
 makeDirectory "${NBTMPDIR}//usr/sbin"
-copyFileToTmpDir "../cli/dist/Debug/GNU-Linux-x86/flowlab-cli" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bigplg-cli" 0755
+copyFileToTmpDir "../cli/dist/Debug/GNU-Linux-x86/bigplg-cli" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bigplg-cli" 0755
 
 cd "${TOP}"
 makeDirectory "${NBTMPDIR}//usr/sbin"
-copyFileToTmpDir "api/bgp_api.rb" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bigplg-api" 0644
+copyFileToTmpDir "api/bigplg-api.rb" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bigplg-api" 0644
 
 cd "${TOP}"
 makeDirectory "${NBTMPDIR}//etc/bigplgd"
 copyFileToTmpDir "etc/bgpd.conf" "${NBTMPDIR}//etc/${OUTPUT_BASENAME}/bigplgd.conf" 0644
+
+cd "${TOP}"
+makeDirectory "${NBTMPDIR}//etc/bigplgd"
+copyFileToTmpDir "../LICENSE" "${NBTMPDIR}//etc/${OUTPUT_BASENAME}/LICENSE" 0644
+
+cd "${TOP}"
+makeDirectory "${NBTMPDIR}//etc/bigplgd"
+copyFileToTmpDir "../README.md" "${NBTMPDIR}//etc/${OUTPUT_BASENAME}/README.md" 0644
 
 
 # Create control file

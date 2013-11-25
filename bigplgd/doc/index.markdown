@@ -1,6 +1,6 @@
 ---
 layout: page
-title: BigPlg: A Open Source BGP Looking-glass
+title: "BigPlg: A Open Source BGP Looking-glass"
 date: 2013-11-02 06:45
 comments: true
 sharing: true
@@ -27,6 +27,9 @@ On large-scale networks, this daemon may serve as a BGP routing information base
 * **[JSON API Reference](http://aaronhebert.net/bgplg/api-reference)**
 
 ### Release Notes on BigPlg v1.0.3(captain's log)
+
+[bigplg-1.0.3-GNU-Linux-x86_64.deb](http://aaronhebert.net/bgplg/release/bigplg-1.0.3-GNU-Linux-x86_64.deb "bigplg-1.0.3-GNU-Linux-x86_64.deb") - Nov. 25 2013
+
 New capabilities in this revision, and 1 bug fix.
 I've decided to use the daemons current binary database as a means of indexing BGP updates. These entries can be queried via a URL served by the ruby library Sinatra, or directly served via TCP socket API call.
 

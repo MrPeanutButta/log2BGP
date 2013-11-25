@@ -11,7 +11,8 @@ The below configurations are just examples and do not reflect a full configurati
 
 ### Loading initial configuration
 An initial configuration can be loaded with the `-load` switch.<br>
-`flowlab-cli -load config-file-name`
+
+    bigplg-cli -load config-file-name
 
 ### Configuring peering sessions
 The CLI syntax for peering closely resembles the Cisco IOS syntax. Below is an example. Note, that the BGP ID must be statically set before the session will establish.

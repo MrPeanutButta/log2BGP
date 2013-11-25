@@ -7,7 +7,9 @@ sharing: true
 footer: true
 ---
 ### Command-line Interface
-The command line interface to bgpd loosely follows a familier Cisco IOS style syntax. There are also various modes of operation that will allow user or admin level commands to be entered.
+The command line interface to bigpld loosely follows a familiar Cisco IOS style syntax. There are also various modes of operation that will allow user or admin level commands to be entered. The CLI can be started with `sudo`.
+
+    sudo bigplg-cli
 
 ### User Exec
 The user exec prompt is initially set to 0x01 which allows common commands to be accessed. Below is an example of just a few commands that would be visible to the non admin user. 
@@ -23,7 +25,7 @@ The user exec prompt is initially set to 0x01 which allows common commands to be
           ping                          ping destination address or hostname
           pwd                           print working directory
           show                          show running system information
-          stat                          srint out statistics on a file
+          stat                          print out statistics on a file
 
 The quick help '?' will display a list of available commands. If the text already existing on the command line is unique, then the list of sub commands is returned.
 
@@ -63,8 +65,8 @@ System configuration is performed from the configuration prompt. From this mode 
           <cr>
 
 ### Command line editing
-Various hotkeys allow command line editing. 
-A list of a few helpful hotkeys.
+Various hot-keys allow command line editing. 
+A list of a few helpful hot-keys.
 
 * TAB : command completion
 * ctrl + a : go to beginning of command line

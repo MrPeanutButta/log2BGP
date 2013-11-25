@@ -183,6 +183,7 @@ ${OBJECTDIR}/tcp_server.o: tcp_server.cpp
 
 # Subprojects
 .build-subprojects:
+	cd ../cli && ${MAKE}  -f Makefile CONF=Debug
 
 # Build Test Targets
 .build-tests-conf: .build-conf ${TESTFILES}
@@ -466,6 +467,7 @@ ${OBJECTDIR}/tcp_server_nomain.o: ${OBJECTDIR}/tcp_server.o tcp_server.cpp
 
 # Subprojects
 .clean-subprojects:
+	cd ../cli && ${MAKE}  -f Makefile CONF=Debug clean
 
 # Enable dependency checking
 .dep.inc: .depcheck-impl

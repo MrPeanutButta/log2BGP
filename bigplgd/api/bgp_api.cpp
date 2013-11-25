@@ -147,6 +147,10 @@ struct prefix_matches {
  */
 std::string BGP::api_get_all_origin_as(BGP* bgp, std::vector<std::string>& tokens) {
 
+    if (tokens.size() < 4) {
+        return "{\"entries\":[\"prefix\":\"invalid number of parameters\"]}";
+    }
+
     bgp->lock_adj_rib_in();
 
     uint32_t asn = string_to_uint32_t(tokens[2]);
@@ -361,6 +365,9 @@ bool is_rfc1918(const uint32_t &prefix) {
 std::string BGP::api_get_public_origin_as(BGP* bgp,
         std::vector<std::string> &tokens) {
 
+    if (tokens.size() < 4) {
+        return "{\"entries\":[\"prefix\":\"invalid number of parameters\"]}";
+    }
 
     bgp->lock_adj_rib_in();
 
@@ -422,6 +429,9 @@ std::string BGP::api_get_public_origin_as(BGP* bgp,
 std::string BGP::api_get_private_origin_as(BGP* bgp,
         std::vector<std::string> &tokens) {
 
+    if (tokens.size() < 4) {
+        return "{\"entries\":[\"prefix\":\"invalid number of parameters\"]}";
+    }
 
     bgp->lock_adj_rib_in();
 

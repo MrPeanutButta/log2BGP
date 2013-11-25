@@ -60,8 +60,8 @@ mkdir -p ${NBTMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory "${NBTMPDIR}//usr/bin"
-copyFileToTmpDir "${OUTPUT_PATH}" "${NBTMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
+makeDirectory "${NBTMPDIR}//usr"
+copyFileToTmpDir "${OUTPUT_PATH}" "${NBTMPDIR}/${PACKAGE_TOP_DIR}${OUTPUT_BASENAME}" 0755
 
 
 # Create control file
@@ -71,11 +71,11 @@ rm -f ${CONTROL_FILE}
 mkdir -p ${NBTMPDIR}/DEBIAN
 
 cd "${TOP}"
-echo 'Package: bigplgd' >> ${CONTROL_FILE}
-echo 'Version: 1.0' >> ${CONTROL_FILE}
+echo 'Package: bigplg' >> ${CONTROL_FILE}
+echo 'Version: 1.0.3' >> ${CONTROL_FILE}
 echo 'Architecture: i386' >> ${CONTROL_FILE}
 echo 'Maintainer: aaron' >> ${CONTROL_FILE}
-echo 'Description: ...' >> ${CONTROL_FILE}
+echo 'Description: Border Gateway Protocol: A transparent looking-glass' >> ${CONTROL_FILE}
 
 # Create Debian Package
 cd "${TOP}"
@@ -84,9 +84,9 @@ dpkg-deb  --build ${TMPDIRNAME}
 checkReturnCode
 cd "${TOP}"
 mkdir -p  ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package
-mv ${NBTMPDIR}.deb ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/bigplgd.deb
+mv ${NBTMPDIR}.deb ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/bigplgd-1.0.3-${CND_PLATFORM}_64.deb
 checkReturnCode
-echo Debian: ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/bigplgd.deb
+echo Debian: ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/package/bigplgd-1.0.3-${CND_PLATFORM}_64.deb
 
 # Cleanup
 cd "${TOP}"
