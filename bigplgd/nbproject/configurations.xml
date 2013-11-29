@@ -43,7 +43,6 @@
         <itemPath>cli/bgp_cmdparser.cpp</itemPath>
       </logicalFolder>
       <itemPath>bgp.cpp</itemPath>
-      <itemPath>bgp_adj_rib_wdrawn.cpp</itemPath>
       <itemPath>bgp_attrib_alias.cpp</itemPath>
       <itemPath>bgp_database.cpp</itemPath>
       <itemPath>bgp_main.cpp</itemPath>
@@ -210,8 +209,6 @@
       <item path="api/bigplg-api.rb" ex="false" tool="3" flavor2="0">
       </item>
       <item path="bgp.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="bgp_adj_rib_wdrawn.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="bgp_attrib_alias.cpp" ex="false" tool="1" flavor2="0">
       </item>
@@ -392,8 +389,6 @@
       <item path="api/bigplg-api.rb" ex="false" tool="3" flavor2="0">
       </item>
       <item path="bgp.cpp" ex="false" tool="1" flavor2="0">
-      </item>
-      <item path="bgp_adj_rib_wdrawn.cpp" ex="false" tool="1" flavor2="0">
       </item>
       <item path="bgp_attrib_alias.cpp" ex="false" tool="1" flavor2="0">
       </item>

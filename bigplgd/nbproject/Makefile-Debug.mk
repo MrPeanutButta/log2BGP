@@ -37,7 +37,6 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/api/bgp_api.o \
 	${OBJECTDIR}/bgp.o \
-	${OBJECTDIR}/bgp_adj_rib_wdrawn.o \
 	${OBJECTDIR}/bgp_attrib_alias.o \
 	${OBJECTDIR}/bgp_database.o \
 	${OBJECTDIR}/bgp_main.o \
@@ -95,11 +94,6 @@ ${OBJECTDIR}/bgp.o: bgp.cpp
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} $@.d
 	$(COMPILE.cc) -g -Werror -DTCP_CLIENT_BGPD -DUSE_BGPD -Iinclude/cli -Iinclude -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/bgp.o bgp.cpp
-
-${OBJECTDIR}/bgp_adj_rib_wdrawn.o: bgp_adj_rib_wdrawn.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -g -Werror -DTCP_CLIENT_BGPD -DUSE_BGPD -Iinclude/cli -Iinclude -std=c++11 -MMD -MP -MF $@.d -o ${OBJECTDIR}/bgp_adj_rib_wdrawn.o bgp_adj_rib_wdrawn.cpp
 
 ${OBJECTDIR}/bgp_attrib_alias.o: bgp_attrib_alias.cpp 
 	${MKDIR} -p ${OBJECTDIR}
@@ -228,19 +222,6 @@ ${OBJECTDIR}/bgp_nomain.o: ${OBJECTDIR}/bgp.o bgp.cpp
 	    $(COMPILE.cc) -g -Werror -DTCP_CLIENT_BGPD -DUSE_BGPD -Iinclude/cli -Iinclude -std=c++11 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/bgp_nomain.o bgp.cpp;\
 	else  \
 	    ${CP} ${OBJECTDIR}/bgp.o ${OBJECTDIR}/bgp_nomain.o;\
-	fi
-
-${OBJECTDIR}/bgp_adj_rib_wdrawn_nomain.o: ${OBJECTDIR}/bgp_adj_rib_wdrawn.o bgp_adj_rib_wdrawn.cpp 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/bgp_adj_rib_wdrawn.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} $@.d;\
-	    $(COMPILE.cc) -g -Werror -DTCP_CLIENT_BGPD -DUSE_BGPD -Iinclude/cli -Iinclude -std=c++11 -Dmain=__nomain -MMD -MP -MF $@.d -o ${OBJECTDIR}/bgp_adj_rib_wdrawn_nomain.o bgp_adj_rib_wdrawn.cpp;\
-	else  \
-	    ${CP} ${OBJECTDIR}/bgp_adj_rib_wdrawn.o ${OBJECTDIR}/bgp_adj_rib_wdrawn_nomain.o;\
 	fi
 
 ${OBJECTDIR}/bgp_attrib_alias_nomain.o: ${OBJECTDIR}/bgp_attrib_alias.o bgp_attrib_alias.cpp 
