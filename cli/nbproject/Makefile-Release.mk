@@ -70,38 +70,38 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/cli: ${OBJECTFILES}
 
 ${OBJECTDIR}/cli.o: cli.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/cli.o cli.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cli.o cli.cpp
 
 ${OBJECTDIR}/cli_main.o: cli_main.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/cli_main.o cli_main.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cli_main.o cli_main.cpp
 
 ${OBJECTDIR}/cmdparser.o: cmdparser.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/cmdparser.o cmdparser.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/cmdparser.o cmdparser.cpp
 
 ${OBJECTDIR}/misc.o: misc.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/misc.o misc.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/misc.o misc.cpp
 
 ${OBJECTDIR}/tcp_client.o: tcp_client.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/tcp_client.o tcp_client.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/tcp_client.o tcp_client.cpp
 
 ${OBJECTDIR}/util.o: util.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/util.o util.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/util.o util.cpp
 
 ${OBJECTDIR}/util_bgp.o: util_bgp.cpp 
 	${MKDIR} -p ${OBJECTDIR}
-	${RM} $@.d
-	$(COMPILE.cc) -O2 -MMD -MP -MF $@.d -o ${OBJECTDIR}/util_bgp.o util_bgp.cpp
+	${RM} "$@.d"
+	$(COMPILE.cc) -O2 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/util_bgp.o util_bgp.cpp
 
 # Subprojects
 .build-subprojects:
