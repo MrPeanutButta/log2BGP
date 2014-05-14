@@ -96,7 +96,7 @@ This will reduce code bloat.
 * Considering graphing BGP event data for the web front end.
 
 ### Bug Reporting
-See [issues](https://github.com/ahebert/flowlab_bgp_lg/issues) to report issues and check for updates on what is currently being worked.
+See [issues](https://github.com/log2co/log2BGP/issues) to report issues and check for updates on what is currently being worked.
 
 ### Contributing
 If you wish to contribute, please fork the repo and contact <aaron.hebert@gmail.com> if you have any questions.
