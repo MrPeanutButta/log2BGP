@@ -1,20 +1,12 @@
-### Border Gateway Protocol: A transparent looking-glass [![Build Status](https://travis-ci.org/log2co/log2BGP.svg?branch=master)](https://travis-ci.org/log2co/log2BGPg)
-This BGP looking-glass allows the collection of the IPv4 Internet 
-routing table which may be viewed by service providers and/or ISP customers to validate 
-IP routing across autonomous systems.
+### log2BGP event engine [![Build Status](https://travis-ci.org/log2co/log2BGP.svg?branch=master)](https://travis-ci.org/log2co/log2BGPg)
+This daemon collects IPv4/IPv6 routing information and tracks the historical attributes. Routing updates may also have attributes aliased to become (graph) readable. This function exists to allow the exporting of RIB updates to splunk, or any such data collector.
 
-Routing updates may also have attributes aliased to become (graph) readable. This function 
-exists to allow the exporting of RIB updates to splunk, or any such data collector.
+A beneficial side-effect of collecting BGP routing information is the ability to track BGP updates/events local or remote(upstream). To analyze events splunk is supported. A JSON/TCP socket/msgpack API is currently under development.
 
-A beneficial side-effect of collecting BGP routing information is the ability to track BGP updates/events local or remote(upstream). To analyze events splunk is supported. A JSON/Socket API is currently under development.
+Custom graphs can be easily implemented if taken the time to do so. There's certainly no need to rely on splunk if one developed another way of displaying data. This project is meant to be nothing more than a route collector, and 
+it's interface is solely CLI(command line interface). This project does not have graph data "out of the box".
 
-Custom graphs can be easily implemented if taken the time to do so. There's
-certainly no need to rely on splunk if one developed another way of displaying
-data. This project is meant to be nothing more than a route collector, and 
-it's interface is solely CLI(command line interface). This project does not have
-graph data "out of the box".
-
-![bgplg](http://aaronhebert.net/bgplg/images/screeny.png?raw=true)
+![bgplg](https://github.com/ahebert/log2BGP/tree/master/doc/graph.png?raw=true)
 
 ### Enhancing Automation
 On large-scale networks, this daemon may serve as a BGP routing information base for scripts to harvest network information. This eliminates the need to "screen scrape" output with regex, which always leaves me feeling dirty. A JSON/Socket API is currently under development to serve this purpose.
