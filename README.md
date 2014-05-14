@@ -6,16 +6,16 @@ A beneficial side-effect of collecting BGP routing information is the ability to
 Custom graphs can be easily implemented if taken the time to do so. There's certainly no need to rely on splunk if one developed another way of displaying data. This project is meant to be nothing more than a route collector, and 
 it's interface is solely CLI(command line interface). This project does not have graph data "out of the box".
 
-![bgplg](https://github.com/ahebert/log2BGP/tree/master/doc/graph.png?raw=true)
+![bgplg](https://raw.githubusercontent.com/log2co/log2BGP/master/doc/graph.png)
 
 ### Enhancing Automation
 On large-scale networks, this daemon may serve as a BGP routing information base for scripts to harvest network information. This eliminates the need to "screen scrape" output with regex, which always leaves me feeling dirty. A JSON/Socket API is currently under development to serve this purpose.
 
 ### Documentation
-* **[Installing](http://aaronhebert.net/bgplg/installing.html)**
-* **[Command-line Basics](http://aaronhebert.net/bgplg/start-cli.html)** 
-* **[Command-line Refence](http://aaronhebert.net/bgplg/cli-reference.html)**
-* **[REST API Reference](http://aaronhebert.net/bgplg/api-reference.html)**
+* **[Installing](installing)**
+* **[Command-line Basics](cli-basics)** 
+* **[Command-line Refence](cli-reference)**
+* **[REST API Reference](api-reference)**
 
 ### Release Notes on bgpd v1.0.3(captain's log)
 New capabilities in this revision, and 1 bug fix.

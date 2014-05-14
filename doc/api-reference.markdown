@@ -1,11 +1,3 @@
----
-layout: page
-title: "API Reference"
-date: 2013-11-18 19:32
-comments: true
-sharing: true
-footer: true
----
 ### Starting the API
 The JSON API script can be found in `flowlab_bgp_lg/bgpd/api`. The script name is `bgp_api.rb`. The ruby interpreter will need super user access to be able to bind and listen for requests.
 
@@ -15,7 +7,7 @@ __A very important note about return values:__ ALL values ending in __`_bin`__ a
 * [byteorder(3)](https://www.linux.com/learn/docs/man/byteorder3)
 
 
->     $cd BigPlg/bigplgd/api
+>     $cd log2BGP/api
 >     $sudo ruby bgp_api.rb
 >     == Sinatra/1.4.4 has taken the stage on 4567 for development with backup from Thin
 >     >Thin web server (v1.3.1 codename Triple Espresso)
@@ -24,7 +16,7 @@ __A very important note about return values:__ ALL values ending in __`_bin`__ a
 
 or if installed from binary package.
 
-    sudo bigplg-api
+    sudo log2bgp-api
     
 ### API Calls
 #### URL and Socket API Calls

@@ -1,18 +1,10 @@
----
-layout: page
-title: "Command-line Reference"
-date: 2013-11-10 06:21
-comments: true
-sharing: true
-footer: true
----
 ### A note about example configurations
 The below configurations are just examples and do not reflect a full configuration. Hopefully these examples will convey the basic idea, but they are not meant for a working configuration.
 
 ### Loading initial configuration
 An initial configuration can be loaded with the `-load` switch.<br>
 
-    bigplg-cli -load config-file-name
+    log2cli -load config-file-name
 
 ### Configuring peering sessions
 The CLI syntax for peering closely resembles the Cisco IOS syntax. Below is an example. Note, that the BGP ID must be statically set before the session will establish.

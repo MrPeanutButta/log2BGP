@@ -1,15 +1,7 @@
----
-layout: page
-title: "Command-line Basics"
-date: 2013-11-10 06:07
-comments: true
-sharing: true
-footer: true
----
 ### Command-line Interface
-The command line interface to bigpld loosely follows a familiar Cisco IOS style syntax. There are also various modes of operation that will allow user or admin level commands to be entered. The CLI can be started with `sudo`.
+The command line interface to log2CLI loosely follows a familiar Cisco IOS style syntax. There are also various modes of operation that will allow user or admin level commands to be entered. The CLI can be started with `sudo`.
 
-    sudo bigplg-cli
+    sudo log2cli
 
 ### User Exec
 The user exec prompt is initially set to 0x01 which allows common commands to be accessed. Below is an example of just a few commands that would be visible to the non admin user. 
