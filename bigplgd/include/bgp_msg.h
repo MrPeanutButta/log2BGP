@@ -31,10 +31,10 @@
 
 enum class bgp_msg_type : uint8_t {
     open = 0x01,
-            update = 0x02,
-            notification = 0x03,
-            keepalive = 0x04,
-            routerefresh = 0x05
+    update = 0x02,
+    notification = 0x03,
+    keepalive = 0x04,
+    routerefresh = 0x05
 };
 
 // Capabilities code.
@@ -48,22 +48,22 @@ enum class bgp_param_type : uint8_t {
 enum class bgp_multi_proto_capability : uint8_t {
     // multi protocol capability.
     multi_proto_exten = 0x01,
-            // multi protocol capability length.
-            multi_proto_cap_len = 0x06
+    // multi protocol capability length.
+    multi_proto_cap_len = 0x06
 };
 
 // IPv4 AFI/SAFI.
 
 enum class bgp_ipv4_addr_family : uint8_t {
     ipv4_addr_fam = 0x01,
-            ipv4_unicast = 0x01
+    ipv4_unicast = 0x01
 };
 
 // IPv6 AFI/SAFI.
 
 enum class bgp_ipv6_addr_family : uint8_t {
     ipv6_addr_fam = 0x02,
-            ipv6_unicast = 0x01
+    ipv6_unicast = 0x01
 };
 
 // Path attribute codes.
@@ -71,75 +71,75 @@ enum class bgp_ipv6_addr_family : uint8_t {
 enum class bgp_path_attrib : uint8_t {
     // internal use non RFC
     bgp_id = 0x00,
-            origin = 0x01,
-            as_path = 0x02,
-            next_hop = 0x03,
-            multi_exit_disc = 0x04,
-            local_pref = 0x05,
-            atomic_aggregate = 0x06,
-            aggregator = 0x07,
-            community = 0x08,
-            originator = 0x09,
-            cluster_list = 0x0A,
-            mp_reach_nlri = 0x0E,
-            mp_unreach_nlri = 0x0F,
-            as4_path = 0x11,
-            as4_aggregator = 0x12
+    origin = 0x01,
+    as_path = 0x02,
+    next_hop = 0x03,
+    multi_exit_disc = 0x04,
+    local_pref = 0x05,
+    atomic_aggregate = 0x06,
+    aggregator = 0x07,
+    community = 0x08,
+    originator = 0x09,
+    cluster_list = 0x0A,
+    mp_reach_nlri = 0x0E,
+    mp_unreach_nlri = 0x0F,
+    as4_path = 0x11,
+    as4_aggregator = 0x12
 };
 
 // origin codes.
 
 enum class bgp_origin_type : uint8_t {
     igp = 0x00,
-            egp = 0x01,
-            incomplete = 0x02
+    egp = 0x01,
+    incomplete = 0x02
 };
 
 // as_path type codes.
 
 enum class bgp_as_path_type : uint8_t {
     as_set = 0x01,
-            as_sequence = 0x02
+    as_sequence = 0x02
 };
 
 // notification codes.
 
 enum class bgp_error_code : uint8_t {
     msg_head_err = 0x01,
-            open_msg_err = 0x02,
-            update_msg_err = 0x03,
-            hold_time_expired = 0x04,
-            finite_state_mach_err = 0x05,
-            cease = 0x06
+    open_msg_err = 0x02,
+    update_msg_err = 0x03,
+    hold_time_expired = 0x04,
+    finite_state_mach_err = 0x05,
+    cease = 0x06
 };
 
 // notification sub-codes.
 
 enum class bgp_error_subcode : uint8_t {
     zero = 0x00,
-            connection_not_sync = 0x01,
-            bad_msg_len = 0x02,
-            bad_msg_type = 0x03
+    connection_not_sync = 0x01,
+    bad_msg_len = 0x02,
+    bad_msg_type = 0x03
 };
 
 enum class bgp_open_error_subcode : uint8_t {
     unsup_ver_num = 0x01,
-            bad_peer_as = 0x02,
-            bad_bgp_id = 0x03,
-            unsup_opt_param = 0x04,
-            unacpt_hold_time = 0x06,
-            unsup_cap = 0x07
+    bad_peer_as = 0x02,
+    bad_bgp_id = 0x03,
+    unsup_opt_param = 0x04,
+    unacpt_hold_time = 0x06,
+    unsup_cap = 0x07
 };
 
 enum class bgp_rib_codes : uint8_t {
     suppressed = 0x00,
-            damped,
-            history,
-            valid,
-            best,
-            internal,
-            rib_failure,
-            stale
+    damped,
+    history,
+    valid,
+    best,
+    internal,
+    rib_failure,
+    stale
 };
 
 /*!BGP header

@@ -10,7 +10,8 @@ branches:
 notifications:
   recipients:
     - aaron.hebert@gmail.com
-    - aaron.hebert@rackspace.com
+    - evanscottgray@gmail.com
+    - omarfahmikhalid@gmail.com
   email:
     on_success: change
     on_failure: always 

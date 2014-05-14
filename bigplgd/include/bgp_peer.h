@@ -36,13 +36,13 @@
 
 enum class bgp_peer_state : uint8_t {
     idle = 0,
-            connect,
-            active,
-            opensent,
-            openconfirm,
-            established,
-            deleted,
-            clearing
+    connect,
+    active,
+    opensent,
+    openconfirm,
+    established,
+    deleted,
+    clearing
 };
 
 // counter

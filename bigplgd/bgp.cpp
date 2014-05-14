@@ -333,7 +333,7 @@ void BGP::peer_established(bgp_peer *peer) {
                     case bgp_msg_type::update:
 
                         // handle update by pushing to peers InQ
-                                peer->update.rx++;
+                        peer->update.rx++;
                         peer->update.last_rx = time(NULL);
 
                         q = new (std::nothrow) queue_data;
