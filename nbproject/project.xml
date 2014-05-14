@@ -13,6 +13,7 @@
                 <sourceRootElem>include</sourceRootElem>
                 <sourceRootElem>api</sourceRootElem>
                 <sourceRootElem>cli</sourceRootElem>
+                <sourceRootElem>src</sourceRootElem>
             </sourceRootList>
             <confList>
                 <confElem>
