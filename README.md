@@ -13,9 +13,9 @@ On large-scale networks, this daemon may serve as a BGP routing information base
 
 ### Documentation
 * **[Installing](https://github.com/log2co/log2BGP/wiki/installing)**
-* **[Command-line Basics](cli-basics)** 
-* **[Command-line Refence](cli-reference)**
-* **[REST API Reference](api-reference)**
+* **[Command-line Basics](https://github.com/log2co/log2BGP/wiki/cli-basics)** 
+* **[Command-line Refence](https://github.com/log2co/log2BGP/wiki/cli-reference)**
+* **[REST API Reference](https://github.com/log2co/log2BGP/wiki/api-reference)**
 
 ### Release Notes on bgpd v1.0.3(captain's log)
 New capabilities in this revision, and 1 bug fix.
@@ -86,7 +86,6 @@ This will reduce code bloat.
 * Doxygen code comment clean up.
 * Hosting Doxygen on projects webpage.
 * Make max database entries configurable instead of hard-coded limit 1000.
-* Finish [cx-lang](https://github.com/ahebert/Cx) project enough to use in configuring bigplgd.
 
 ### Road-map (up coming plans)
 * IPv6 and multi-protocol extensions.
