@@ -2,16 +2,14 @@ language: cpp
 compiler:
   - g++
 before_install:
-  - chmod +x build_bigplg
-script: $PWD/build_bigplg
+  - chmod +x build_log2bgp
+script: $PWD/build_log2bgp
 branches:
   only:
     - master
 notifications:
   recipients:
-    - aaron.hebert@gmail.com
-    - evanscottgray@gmail.com
-    - omarfahmikhalid@gmail.com
+    - all@log2.co
   email:
     on_success: change
     on_failure: always 
