@@ -1,4 +1,4 @@
-### log2BGP event engine [![Build Status](https://travis-ci.org/ahebert/log2BGP.svg?branch=master)](https://travis-ci.org/log2co/log2BGPg)
+### log2BGP event engine [![Build Status](https://travis-ci.org/ahebert/log2BGP.svg?branch=master)](https://travis-ci.org/ahebert/log2BGP)
 This daemon collects IPv4/IPv6 routing information and tracks the historical attributes. Routing updates may also have attributes aliased to become (graph) readable. This function exists to allow the exporting of RIB updates to splunk, or any such data collector.
 
 A beneficial side-effect of collecting BGP routing information is the ability to track BGP updates/events local or remote(upstream). To analyze events splunk is supported. A JSON/TCP socket/msgpack API is currently under development.
