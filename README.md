@@ -12,6 +12,7 @@ it's interface is solely CLI(command line interface). This project does not have
 On large-scale networks, this daemon may serve as a BGP routing information base for scripts to harvest network information. This eliminates the need to "screen scrape" output with regex, which always leaves me feeling dirty. A JSON/Socket API is currently under development to serve this purpose.
 
 ### Documentation
+* **This daemon requires the [CLI](https://github.com/ahebert/log2CLI) for configuration.**
 * **[Installing](https://github.com/log2co/log2BGP/wiki/installing)**
 * **[Command-line Basics](https://github.com/log2co/log2BGP/wiki/cli-basics)** 
 * **[Command-line Refence](https://github.com/log2co/log2BGP/wiki/cli-reference)**
