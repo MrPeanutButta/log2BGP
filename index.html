@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="Log2bgp : Border Gateway Protocol Event Engine">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Log2bgp</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/ahebert/log2BGP">View on GitHub</a>
+
+          <h1 id="project_title">Log2bgp</h1>
+          <h2 id="project_tagline">Border Gateway Protocol Event Engine</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/ahebert/log2BGP/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/ahebert/log2BGP/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>
+<a id="log2bgp-event-engine-" class="anchor" href="#log2bgp-event-engine-" aria-hidden="true"><span class="octicon octicon-link"></span></a>log2BGP event engine <a href="https://travis-ci.org/ahebert/log2BGP"><img src="https://travis-ci.org/ahebert/log2BGP.svg?branch=master" alt="Build Status"></a>
+</h3>
+
+<p>This daemon collects IPv4/IPv6 routing information and tracks the historical attributes. Routing updates may also have attributes aliased to become (graph) readable. This function exists to allow the exporting of RIB updates to splunk, or any such data collector.</p>
+
+<p>A beneficial side-effect of collecting BGP routing information is the ability to track BGP updates/events local or remote(upstream). To analyze events splunk is supported. A JSON/TCP socket/msgpack API is currently under development.</p>
+
+<p>Custom graphs can be easily implemented if taken the time to do so. There's certainly no need to rely on splunk if one developed another way of displaying data. This project is meant to be nothing more than a route collector, and 
+it's interface is solely CLI(command line interface). This project does not have graph data "out of the box".</p>
+
+<p><img src="https://raw.githubusercontent.com/log2co/log2BGP/master/doc/graph.png" alt="bgplg"></p>
+
+<h3>
+<a id="enhancing-automation" class="anchor" href="#enhancing-automation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Enhancing Automation</h3>
+
+<p>On large-scale networks, this daemon may serve as a BGP routing information base for scripts to harvest network information. This eliminates the need to "screen scrape" output with regex, which always leaves me feeling dirty. A JSON/Socket API is currently under development to serve this purpose.</p>
+
+<h3>
+<a id="documentation" class="anchor" href="#documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Documentation</h3>
+
+<ul>
+<li><strong>This daemon requires the <a href="https://github.com/ahebert/log2CLI">CLI</a> for configuration.</strong></li>
+<li><strong><a href="https://github.com/log2co/log2BGP/wiki/installing">Installing</a></strong></li>
+<li>
+<strong><a href="https://github.com/log2co/log2BGP/wiki/cli-basics">Command-line Basics</a></strong> </li>
+<li><strong><a href="https://github.com/log2co/log2BGP/wiki/cli-reference">Command-line Refence</a></strong></li>
+<li><strong><a href="https://github.com/log2co/log2BGP/wiki/api-reference">REST API Reference</a></strong></li>
+</ul>
+
+<h3>
+<a id="release-notes-on-bgpd-v103captains-log" class="anchor" href="#release-notes-on-bgpd-v103captains-log" aria-hidden="true"><span class="octicon octicon-link"></span></a>Release Notes on bgpd v1.0.3(captain's log)</h3>
+
+<p>New capabilities in this revision, and 1 bug fix.
+I've decided to use the daemons current binary database as a means of
+indexing BGP updates. These entries can be queried via a URL served by the ruby library Sinatra, or directly served via TCP socket API call.</p>
+
+<p>The BGP event database is organized by [peer id|prefix] key pair in the RIB, and that RIB entry holds all indexes for BGP event data. Each prefix may occupy up to 1000 entries. Once the max entry limit is reached (1000 entries), the oldest entries will begin to be overwritten. It's recommended that you export to some log collector if you wish to keep the data.</p>
+
+<h4>
+<a id="additions" class="anchor" href="#additions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Additions</h4>
+
+<ul>
+<li>Created version definitions in <code>version.h</code>.</li>
+<li>Created TCP listener for Sinatra/socket API</li>
+<li>Converts all API call returns to JSON formatted strings.</li>
+<li>Supports wide(2byte) and narrow(1byte) character TCP sockets. e.g Unicode support</li>
+<li>Reaching the sinatra API:
+
+<ul>
+<li>Current:
+
+<ul>
+<li>http://[serverip]:4567/bgp/ipv4/:prefix</li>
+</ul>
+</li>
+<li>History:
+
+<ul>
+<li>http://[serverip]:4567/bgp/ipv4/:prefix/history</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Reaching the TCP socket level API:
+
+<ul>
+<li>open TCP socket to [serverip] port 667
+
+<ul>
+<li>write command length followed by api-get</li>
+<li>can be tested with <code>telnet localhost 667</code>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<h4>
+<a id="socket-api-with-ruby-example" class="anchor" href="#socket-api-with-ruby-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Socket API with Ruby example</h4>
+
+<div class="highlight highlight-ruby"><pre>    <span class="pl-c">## BGP Looking Glass Socket API example</span>
+
+    <span class="pl-k">require</span> <span class="pl-s"><span class="pl-pds">'</span>socket<span class="pl-pds">'</span></span>      <span class="pl-c"># Sockets are in standard library</span>
+
+    <span class="pl-k">def</span> <span class="pl-en">api_write</span>(<span class="pl-smi">cmd</span>)
+
+      host <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>127.0.0.1<span class="pl-pds">'</span></span>
+      port <span class="pl-k">=</span> <span class="pl-c1">667</span>
+
+      s <span class="pl-k">=</span> <span class="pl-c1">TCPSocket</span>.open(host, port)
+
+      <span class="pl-c"># Here we need to prepend the string length of the command.</span>
+      <span class="pl-c"># The API will expect the length first.</span>
+      s.write(cmd.length.chr<span class="pl-k">+</span>cmd.to_s)
+
+      <span class="pl-c"># ret_val is JSON formatted after this read</span>
+      ret_val <span class="pl-k">=</span> s.read   <span class="pl-c"># Read lines from the socket</span>
+      s.close            <span class="pl-c"># Close the socket when done</span>
+
+      <span class="pl-k">return</span> ret_val.to_s
+    <span class="pl-k">end</span>
+
+    <span class="pl-c"># Current prefix data</span>
+    puts(<span class="pl-s"><span class="pl-pds">"</span>current data for 8.8.8.8 is:<span class="pl-pds">"</span></span>)
+    puts(api_write(<span class="pl-s"><span class="pl-pds">"</span>api-get prefix 8.8.8.8<span class="pl-pds">"</span></span>))
+
+    <span class="pl-c"># Current prefix data, and historical</span>
+    puts(<span class="pl-s"><span class="pl-pds">"</span>current &amp; historical data for 8.8.8.8 is:<span class="pl-pds">"</span></span>)
+    puts(api_write(<span class="pl-s"><span class="pl-pds">"</span>api-get prefix 8.8.8.8 history<span class="pl-pds">"</span></span>))</pre></div>
+
+<h4>
+<a id="revisions" class="anchor" href="#revisions" aria-hidden="true"><span class="octicon octicon-link"></span></a>Revisions</h4>
+
+<ul>
+<li>Peer state machine revised to only use 1 dedicated thread for reads, and the main BGP thread handles all queue processing. This has reduced the number of threads from 2 per peer to 1.</li>
+<li>Collapsed TCP server loops for CLI and API into a single method.
+This will reduce code bloat.</li>
+</ul>
+
+<h4>
+<a id="bug-fixes" class="anchor" href="#bug-fixes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bug fixes</h4>
+
+<ul>
+<li>bgpd failed to create it's withdraw database if the file didn't already exist. Failure to open it's database resulted in BGP event data not being collected.</li>
+</ul>
+
+<h3>
+<a id="todo-in-progress" class="anchor" href="#todo-in-progress" aria-hidden="true"><span class="octicon octicon-link"></span></a>TODO (in progress)</h3>
+
+<ul>
+<li>Add more functionality to the API from this point forward.</li>
+<li>Doxygen code comment clean up.</li>
+<li>Hosting Doxygen on projects webpage.</li>
+<li>Make max database entries configurable instead of hard-coded limit 1000.</li>
+</ul>
+
+<h3>
+<a id="road-map-up-coming-plans" class="anchor" href="#road-map-up-coming-plans" aria-hidden="true"><span class="octicon octicon-link"></span></a>Road-map (up coming plans)</h3>
+
+<ul>
+<li>IPv6 and multi-protocol extensions.</li>
+<li>BGP Additional Paths support. <a href="http://www.cisco.com/en/US/docs/ios-xml/ios/iproute_bgp/configuration/xe-3s/asr1000/irg-additional-paths.html">Cisco Documentation</a>
+</li>
+<li>The CLI application responsible for configuring <code>bgpd</code> <strong>will be deprecated at some point in the future</strong>. CLI will be replaced with a configuration language that will allow start-up and run-time configurations via configuration scripts. Yep, CLI is going away.</li>
+<li>Web front end for pulling JSON from the API and displaying in a friendly UI.</li>
+<li>Considering graphing BGP event data for the web front end.</li>
+</ul>
+
+<h3>
+<a id="bug-reporting" class="anchor" href="#bug-reporting" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bug Reporting</h3>
+
+<p>See <a href="https://github.com/log2co/log2BGP/issues">issues</a> to report issues and check for updates on what is currently being worked.</p>
+
+<h3>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h3>
+
+<p>If you wish to contribute, please fork the repo and contact <a href="mailto:aaron.hebert@gmail.com">aaron.hebert@gmail.com</a> if you have any questions.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Log2bgp maintained by <a href="https://github.com/ahebert">ahebert</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
